@@ -1,5 +1,6 @@
 import * as RED from 'node-red';
 import express from 'express';
+import { createServer, Server } from 'http';
 import cors from 'cors';
 import { WebSocketServer } from 'ws';
 import { EventEmitter } from 'events';
@@ -37,9 +38,10 @@ interface SimulationScenario {
 export class CharacterSimulator extends EventEmitter {
   private character: CharacterConfig;
   private nodeRedApp: any;
-  private expressApp: express.Application;
-  private wsServer: WebSocketServer;
-  private logger: winston.Logger;
+  private expressApp!: express.Application;
+  private httpServer!: Server;
+  private wsServer!: WebSocketServer;
+  private logger!: winston.Logger;
   private isRunning: boolean = false;
 
   constructor(characterId: string) {
@@ -169,6 +171,7 @@ export class CharacterSimulator extends EventEmitter {
    */
   private setupExpress(): void {
     this.expressApp = express();
+    this.httpServer = createServer(this.expressApp);
     this.expressApp.use(cors());
     this.expressApp.use(express.json());
 
@@ -198,32 +201,12 @@ export class CharacterSimulator extends EventEmitter {
 
   /**
    * Setup WebSocket server for real-time communication
+   * This integrates with Node-RED's WebSocket handling
    */
   private setupWebSocket(): void {
-    this.wsServer = new WebSocketServer({ port: this.character.port + 100 });
-    
-    this.wsServer.on('connection', (ws) => {
-      this.logger.info(`WebSocket client connected to ${this.character.name}'s simulator`);
-      
-      ws.send(JSON.stringify({
-        type: 'welcome',
-        character: this.character,
-        message: `Welcome to ${this.character.name}'s simulation environment!`
-      }));
-
-      ws.on('message', (data) => {
-        try {
-          const message = JSON.parse(data.toString());
-          this.handleWebSocketMessage(ws, message);
-        } catch (error) {
-          this.logger.error(`WebSocket message error: ${error}`);
-        }
-      });
-
-      ws.on('close', () => {
-        this.logger.info(`WebSocket client disconnected from ${this.character.name}'s simulator`);
-      });
-    });
+    // Note: Node-RED will handle its own WebSocket connections at /comms
+    // We'll set up character-specific WebSocket after Node-RED starts
+    // For now, this is a placeholder - WebSocket setup happens in start()
   }
 
   /**
@@ -236,6 +219,8 @@ export class CharacterSimulator extends EventEmitter {
       userDir: path.join(__dirname, '..', 'data', this.character.id),
       flowFile: `${this.character.id}-flows.json`,
       credentialSecret: `${this.character.id}-secret-key`,
+      uiPort: this.character.port,
+      uiHost: 'localhost',
       functionGlobalContext: {
         character: this.character,
         logger: this.logger
@@ -282,9 +267,34 @@ export class CharacterSimulator extends EventEmitter {
       ]
     };
 
-    // Initialize Node-RED
+    // Initialize Node-RED with our HTTP server
     this.nodeRedApp = RED;
-    this.nodeRedApp.init(this.expressApp, settings);
+    this.nodeRedApp.init(this.httpServer, settings);
+    
+    // Mount Node-RED admin interface and flows
+    this.expressApp.use(settings.httpAdminRoot, RED.httpAdmin);
+    this.expressApp.use(settings.httpNodeRoot, RED.httpNode);
+    
+    // Add our custom API endpoints to our Express app
+    this.expressApp.get('/api/character', (req: any, res: any) => {
+      res.json({
+        ...this.character,
+        status: this.isRunning ? 'running' : 'stopped',
+        uptime: this.isRunning ? process.uptime() : 0
+      });
+    });
+
+    this.expressApp.post('/api/scenario/:scenarioId', (req: any, res: any) => {
+      this.loadScenario(req.params.scenarioId)
+        .then(() => res.json({ success: true }))
+        .catch(err => res.status(500).json({ error: err.message }));
+    });
+
+    this.expressApp.post('/api/character-action', (req: any, res: any) => {
+      this.executeCharacterAction(req.body)
+        .then(result => res.json(result))
+        .catch(err => res.status(500).json({ error: err.message }));
+    });
   }
 
   /**
@@ -306,8 +316,8 @@ export class CharacterSimulator extends EventEmitter {
       // Start Node-RED
       await this.nodeRedApp.start();
 
-      // Start Express server
-      const server = this.expressApp.listen(this.character.port, () => {
+      // Start our HTTP server (which Node-RED is now attached to)
+      this.httpServer.listen(this.character.port, () => {
         this.logger.info(`${this.character.name}'s simulator running on port ${this.character.port}`);
         this.logger.info(`Dashboard: http://localhost:${this.character.port}`);
         this.logger.info(`MODBUS Server: localhost:${this.character.modbusPort}`);
@@ -334,7 +344,10 @@ export class CharacterSimulator extends EventEmitter {
       this.logger.info(`Stopping ${this.character.name}'s PLC simulator...`);
       
       await this.nodeRedApp.stop();
-      this.wsServer.close();
+      if (this.wsServer) {
+        this.wsServer.close();
+      }
+      this.httpServer.close();
       this.isRunning = false;
       
       this.emit('stopped', this.character);

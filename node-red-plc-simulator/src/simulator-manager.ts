@@ -17,9 +17,22 @@ interface SimulatorInstance {
   port: number;
 }
 
+interface HealthStatus {
+  status: 'healthy' | 'unhealthy' | 'error';
+  uptime?: string;
+  port?: number;
+  error?: string;
+}
+
+interface HealthCheck {
+  timestamp: string;
+  overall: 'healthy' | 'degraded' | 'critical';
+  simulators: Record<string, HealthStatus>;
+}
+
 export class SimulatorManager extends EventEmitter {
   private simulators: Map<string, SimulatorInstance> = new Map();
-  private logger: winston.Logger;
+  private logger!: winston.Logger;
 
   constructor() {
     super();
@@ -251,8 +264,8 @@ export class SimulatorManager extends EventEmitter {
   /**
    * Monitor system health across all simulators
    */
-  async healthCheck(): Promise<any> {
-    const health = {
+  async healthCheck(): Promise<HealthCheck> {
+    const health: HealthCheck = {
       timestamp: new Date().toISOString(),
       overall: 'healthy',
       simulators: {}
@@ -341,7 +354,7 @@ Characters: kyoko, byakuya, chihiro, celestia, sakura
           break;
       }
     } catch (error) {
-      console.error('Command failed:', error.message);
+      console.error('Command failed:', (error as Error).message);
       process.exit(1);
     }
   }
