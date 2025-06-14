@@ -1,0 +1,183 @@
+[
+  {
+    "id": "celestia_design_studio",
+    "type": "tab",
+    "label": "🎨 Celestia's Aesthetic Design Studio",
+    "disabled": false,
+    "info": "Celestia Ludenberg's elegant visualization and UI/UX design laboratory for beautiful industrial interfaces"
+  },
+  {
+    "id": "aesthetic_input_generator",
+    "type": "inject",
+    "z": "celestia_design_studio",
+    "name": "👑 Royal Design Signals",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "3",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 80,
+    "wires": [
+      ["aesthetic_processor"]
+    ]
+  },
+  {
+    "id": "aesthetic_processor",
+    "type": "function",
+    "z": "celestia_design_studio",
+    "name": "🎭 Elegant Visualization Engine",
+    "func": "// Celestia's Aesthetic Design and Visualization Processor\n// Creates beautiful, elegant interfaces with royal sophistication\n\nconst timestamp = new Date().toISOString();\nconst designData = {\n    timestamp: timestamp,\n    character: 'Celestia Ludenberg',\n    studio: 'Aesthetic Design',\n    \n    // Design Metrics\n    aesthetics: {\n        elegance_score: Math.random() * 0.2 + 0.8, // 80-100%\n        color_harmony: Math.random() * 0.15 + 0.85, // 85-100%\n        typography_quality: Math.random() * 0.1 + 0.9, // 90-100%\n        layout_balance: Math.random() * 0.2 + 0.8, // 80-100%\n        user_satisfaction: Math.random() * 0.15 + 0.85 // 85-100%\n    },\n    \n    // Royal Theme Elements\n    royal_elements: {\n        gold_accents: Math.random() > 0.3,\n        crimson_highlights: Math.random() > 0.2,\n        elegant_curves: Math.random() > 0.1,\n        luxury_fonts: Math.random() > 0.15,\n        gradient_mastery: Math.random() > 0.05\n    },\n    \n    // Visualization Performance\n    performance: {\n        render_time: Math.random() * 50 + 10, // 10-60ms\n        frame_rate: Math.floor(Math.random() * 20) + 40, // 40-60 FPS\n        memory_efficiency: Math.random() * 0.2 + 0.8, // 80-100%\n        load_time: Math.random() * 2 + 0.5 // 0.5-2.5s\n    },\n    \n    // Design Analytics\n    analytics: {\n        user_engagement: Math.random() * 0.3 + 0.7, // 70-100%\n        click_through_rate: Math.random() * 0.2 + 0.8, // 80-100%\n        bounce_rate: Math.random() * 0.1, // 0-10% (lower is better)\n        session_duration: Math.floor(Math.random() * 600) + 300, // 5-15 minutes\n        aesthetic_rating: Math.random() * 1 + 4 // 4-5 stars\n    },\n    \n    // Current Design Projects\n    projects: {\n        industrial_dashboard: {\n            progress: Math.random() * 0.4 + 0.6, // 60-100%\n            complexity: 'high',\n            style: 'neo-gothic elegance'\n        },\n        plc_visualization: {\n            progress: Math.random() * 0.3 + 0.7, // 70-100%\n            complexity: 'medium',\n            style: 'royal minimalism'\n        },\n        alarm_interface: {\n            progress: Math.random() * 0.5 + 0.5, // 50-100%\n            complexity: 'low',\n            style: 'dramatic sophistication'\n        }\n    },\n    \n    // Virtual PLC Data for Design Testing\n    plc_design: {\n        register_40001: Math.floor(Math.random() * 100) + 4900, // Elegance Score\n        register_40002: Math.floor(Math.random() * 50) + 950,   // Color Harmony\n        register_40003: Math.floor(Math.random() * 60) + 40,    // Frame Rate\n        register_40004: Math.floor(designData.aesthetics.user_satisfaction * 100), // Satisfaction %\n        coil_00001: Math.random() > 0.2, // Royal Mode Active\n        coil_00002: Math.random() > 0.1, // Elegant Theme\n        coil_00003: Math.random() > 0.3  // Luxury Interface\n    },\n    \n    // Celestia's Personality in Design\n    personality: {\n        sophistication_level: 'maximum',\n        attention_to_detail: 'obsessive',\n        creativity_mode: 'inspired',\n        perfectionism: 'absolute',\n        royal_bearing: 'unwavering'\n    }\n};\n\n// Add time-based variations for realism\nconst hour = new Date().getHours();\nif (hour >= 14 && hour <= 18) {\n    // Afternoon tea time - peak creativity\n    designData.aesthetics.elegance_score *= 1.1;\n    designData.performance.frame_rate += 5;\n} else if (hour >= 22 || hour <= 6) {\n    // Late night/early morning - mysterious elegance\n    designData.royal_elements.crimson_highlights = true;\n    designData.performance.render_time *= 0.9;\n}\n\nmsg.payload = designData;\nmsg.topic = 'celestia/aesthetic_design';\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 80,
+    "wires": [
+      ["modbus_server", "websocket_output", "design_dashboard"]
+    ]
+  },
+  {
+    "id": "modbus_server",
+    "type": "modbus-server",
+    "z": "celestia_design_studio",
+    "name": "👑 Royal MODBUS Server",
+    "logEnabled": true,
+    "hostname": "127.0.0.1",
+    "serverPort": "5023",
+    "responseDelay": 100,
+    "delayUnit": "ms",
+    "coilsBufferSize": 10000,
+    "holdingBufferSize": 10000,
+    "inputBufferSize": 10000,
+    "discreteBufferSize": 10000,
+    "showErrors": false,
+    "x": 650,
+    "y": 120,
+    "wires": [
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "websocket_output",
+    "type": "websocket out",
+    "z": "celestia_design_studio",
+    "name": "🌹 Elegant WebSocket",
+    "server": "celestia_ws_server",
+    "client": "",
+    "x": 650,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "design_dashboard",
+    "type": "ui_template",
+    "z": "celestia_design_studio",
+    "group": "celestia_group",
+    "name": "🎨 Royal Design Dashboard",
+    "order": 1,
+    "width": 12,
+    "height": 10,
+    "format": "<div style=\"background: linear-gradient(135deg, #8b0000, #dc143c, #ff6b6b); color: white; padding: 25px; border-radius: 20px; font-family: 'Georgia', serif; box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 3px solid #ffd700;\">\n    <h2 style=\"text-align: center; color: #ffd700; margin-bottom: 25px; text-shadow: 3px 3px 6px rgba(0,0,0,0.7); font-size: 28px; font-style: italic;\">\n        👑 Celestia's Royal Design Studio 🎨\n    </h2>\n    \n    <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;\">\n        <div style=\"background: rgba(255, 215, 0, 0.15); padding: 20px; border-radius: 15px; border: 2px solid #ffd700; backdrop-filter: blur(5px);\">\n            <h3 style=\"color: #ffd700; margin-bottom: 15px; text-align: center;\">✨ Aesthetic Metrics</h3>\n            <div style=\"font-size: 14px; line-height: 1.6;\">\n                <div>👑 Elegance Score: {{(msg.payload.aesthetics.elegance_score * 100).toFixed(1)}}%</div>\n                <div>🎨 Color Harmony: {{(msg.payload.aesthetics.color_harmony * 100).toFixed(1)}}%</div>\n                <div>📝 Typography: {{(msg.payload.aesthetics.typography_quality * 100).toFixed(1)}}%</div>\n                <div>⚖️ Layout Balance: {{(msg.payload.aesthetics.layout_balance * 100).toFixed(1)}}%</div>\n            </div>\n        </div>\n        \n        <div style=\"background: rgba(255, 215, 0, 0.15); padding: 20px; border-radius: 15px; border: 2px solid #ffd700; backdrop-filter: blur(5px);\">\n            <h3 style=\"color: #ffd700; margin-bottom: 15px; text-align: center;\">🏰 Royal Elements</h3>\n            <div style=\"font-size: 14px; line-height: 1.6;\">\n                <div>🏆 Gold Accents: {{msg.payload.royal_elements.gold_accents ? '✅ Active' : '⏸️ Inactive'}}</div>\n                <div>🌹 Crimson Highlights: {{msg.payload.royal_elements.crimson_highlights ? '✅ Active' : '⏸️ Inactive'}}</div>\n                <div>🌊 Elegant Curves: {{msg.payload.royal_elements.elegant_curves ? '✅ Active' : '⏸️ Inactive'}}</div>\n                <div>📜 Luxury Fonts: {{msg.payload.royal_elements.luxury_fonts ? '✅ Active' : '⏸️ Inactive'}}</div>\n            </div>\n        </div>\n    </div>\n    \n    <div style=\"background: rgba(255, 215, 0, 0.15); padding: 20px; border-radius: 15px; border: 2px solid #ffd700; margin-bottom: 20px; backdrop-filter: blur(5px);\">\n        <h3 style=\"color: #ffd700; margin-bottom: 15px; text-align: center;\">📊 Performance & Analytics</h3>\n        <div style=\"display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; font-size: 13px;\">\n            <div style=\"text-align: center;\">\n                <div style=\"color: #ffd700;\">🖥️ Frame Rate</div>\n                <div>{{msg.payload.performance.frame_rate}} FPS</div>\n            </div>\n            <div style=\"text-align: center;\">\n                <div style=\"color: #ffd700;\">⚡ Render Time</div>\n                <div>{{msg.payload.performance.render_time.toFixed(1)}}ms</div>\n            </div>\n            <div style=\"text-align: center;\">\n                <div style=\"color: #ffd700;\">💝 User Satisfaction</div>\n                <div>{{(msg.payload.analytics.user_engagement * 100).toFixed(1)}}%</div>\n            </div>\n            <div style=\"text-align: center;\">\n                <div style=\"color: #ffd700;\">⭐ Aesthetic Rating</div>\n                <div>{{msg.payload.analytics.aesthetic_rating.toFixed(1)}}/5</div>\n            </div>\n        </div>\n    </div>\n    \n    <div style=\"text-align: center; font-style: italic; color: #ffd700; font-size: 16px; margin-top: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);\">\n        \"Elegance is not about being noticed, it's about being remembered.\" - Celestia Ludenberg 👑\n    </div>\n    \n    <div style=\"text-align: center; font-size: 11px; color: #ffb6c1; margin-top: 10px; opacity: 0.8;\">\n        Last Royal Update: {{msg.payload.timestamp}}\n    </div>\n</div>",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 680,
+    "y": 180,
+    "wires": [[]]
+  },
+  {
+    "id": "color_palette_generator",
+    "type": "function",
+    "z": "celestia_design_studio",
+    "name": "🎨 Royal Color Palette",
+    "func": "// Celestia's Dynamic Color Palette Generator\n// Creates sophisticated color schemes for industrial interfaces\n\nconst palettes = [\n    {\n        name: 'Royal Crimson',\n        primary: '#8b0000',\n        secondary: '#dc143c',\n        accent: '#ffd700',\n        mood: 'dramatic'\n    },\n    {\n        name: 'Gothic Elegance',\n        primary: '#2f1b69',\n        secondary: '#8b5a96',\n        accent: '#e6e6fa',\n        mood: 'mysterious'\n    },\n    {\n        name: 'Victorian Gold',\n        primary: '#b8860b',\n        secondary: '#daa520',\n        accent: '#fffacd',\n        mood: 'luxurious'\n    },\n    {\n        name: 'Midnight Rose',\n        primary: '#191970',\n        secondary: '#ff69b4',\n        accent: '#ffc0cb',\n        mood: 'romantic'\n    }\n];\n\nconst selectedPalette = palettes[Math.floor(Math.random() * palettes.length)];\n\nconst colorData = {\n    timestamp: new Date().toISOString(),\n    designer: 'Celestia Ludenberg',\n    \n    current_palette: selectedPalette,\n    \n    color_theory: {\n        contrast_ratio: Math.random() * 3 + 4.5, // 4.5-7.5 (WCAG compliant)\n        saturation_balance: Math.random() * 0.2 + 0.8, // 80-100%\n        hue_harmony: Math.random() * 0.15 + 0.85, // 85-100%\n        brightness_distribution: Math.random() * 0.1 + 0.9 // 90-100%\n    },\n    \n    application_areas: {\n        dashboard_backgrounds: selectedPalette.primary,\n        accent_elements: selectedPalette.accent,\n        warning_states: '#ff4500',\n        success_states: '#32cd32',\n        neutral_states: '#708090'\n    },\n    \n    user_feedback: {\n        elegance_perception: Math.random() * 0.2 + 0.8, // 80-100%\n        readability_score: Math.random() * 0.15 + 0.85, // 85-100%\n        aesthetic_appeal: Math.random() * 0.1 + 0.9, // 90-100%\n        professional_rating: Math.random() * 0.2 + 0.8 // 80-100%\n    }\n};\n\nmsg.payload = colorData;\nmsg.topic = 'celestia/color_palette';\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 200,
+    "y": 280,
+    "wires": [["palette_display"]]
+  },
+  {
+    "id": "palette_display",
+    "type": "ui_template",
+    "z": "celestia_design_studio",
+    "group": "celestia_group",
+    "name": "🌈 Color Palette Showcase",
+    "order": 2,
+    "width": 12,
+    "height": 6,
+    "format": "<div style=\"background: linear-gradient(45deg, {{msg.payload.current_palette.primary}}, {{msg.payload.current_palette.secondary}}); color: white; padding: 20px; border-radius: 15px; border: 2px solid {{msg.payload.current_palette.accent}};\">\n    <h3 style=\"text-align: center; color: {{msg.payload.current_palette.accent}}; margin-bottom: 20px;\">\n        🎨 {{msg.payload.current_palette.name}} Palette\n    </h3>\n    \n    <div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;\">\n        <div style=\"background: {{msg.payload.current_palette.primary}}; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid {{msg.payload.current_palette.accent}};\">\n            <strong>Primary</strong><br>{{msg.payload.current_palette.primary}}\n        </div>\n        <div style=\"background: {{msg.payload.current_palette.secondary}}; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid {{msg.payload.current_palette.accent}};\">\n            <strong>Secondary</strong><br>{{msg.payload.current_palette.secondary}}\n        </div>\n        <div style=\"background: {{msg.payload.current_palette.accent}}; color: black; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid white;\">\n            <strong>Accent</strong><br>{{msg.payload.current_palette.accent}}\n        </div>\n    </div>\n    \n    <div style=\"text-align: center; font-style: italic; color: {{msg.payload.current_palette.accent}};\">\n        Mood: {{msg.payload.current_palette.mood}} | Contrast Ratio: {{msg.payload.color_theory.contrast_ratio.toFixed(1)}}\n    </div>\n</div>",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 450,
+    "y": 280,
+    "wires": [[]]
+  },
+  {
+    "id": "design_timer",
+    "type": "inject",
+    "z": "celestia_design_studio",
+    "name": "⏰ Design Refresh",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "15",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "refresh_design",
+    "payloadType": "str",
+    "x": 150,
+    "y": 380,
+    "wires": [["color_palette_generator"]]
+  },
+  {
+    "id": "celestia_ws_server",
+    "type": "websocket-listener",
+    "path": "/celestia",
+    "wholemsg": "false"
+  },
+  {
+    "id": "celestia_group",
+    "type": "ui_group",
+    "name": "🎨 Celestia's Design Studio",
+    "tab": "celestia_tab",
+    "order": 1,
+    "disp": true,
+    "width": "12",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "celestia_tab",
+    "type": "ui_tab",
+    "name": "🎨 Aesthetic Design",
+    "icon": "dashboard",
+    "order": 4,
+    "disabled": false,
+    "hidden": false
+  }
+]

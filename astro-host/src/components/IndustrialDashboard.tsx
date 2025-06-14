@@ -20,6 +20,7 @@ import CharacterSelector from './CharacterSelector';
 import SignalMonitor from './SignalMonitor';
 import AnalysisPanel from './AnalysisPanel';
 import AlarmPanel from './AlarmPanel';
+import NodeRedSimulatorDashboard from './NodeRedSimulatorDashboard';
 import { useIndustrialStore } from '../store/industrialStore';
 
 interface Props {}
@@ -185,6 +186,7 @@ const IndustrialDashboard: React.FC<Props> = () => {
     { id: 'analyses', label: 'AI Analysis', icon: TrendingUp },
     { id: 'alarms', label: 'Alarms', icon: AlertTriangle },
     { id: 'characters', label: 'Characters', icon: Users },
+    { id: 'simulators', label: 'Node-RED Simulators', icon: Settings },
   ];
 
   const getStatusColor = () => {
@@ -211,6 +213,8 @@ const IndustrialDashboard: React.FC<Props> = () => {
           selectedCharacter={selectedCharacter}
           onSelectCharacter={setSelectedCharacter}
         />;
+      case 'simulators':
+        return <NodeRedSimulatorDashboard />;
       default:
         return <PLCDashboard devices={devices} />;
     }

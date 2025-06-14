@@ -4,11 +4,28 @@ Welcome to the most EPIC industrial automation integration ever created! This pr
 
 ## 🚀 Quick Start
 
+### One-Command Launch (Recommended)
+
+```bash
+# Launch the complete AI-Kit Industrial IoT system
+./launch-complete-system.sh
+
+# Or step by step:
+./launch-complete-system.sh install  # Install dependencies only
+./launch-complete-system.sh start    # Start all services
+```
+
+This will start:
+- **🌟 Astro-Host Dashboard** at `http://localhost:4321`
+- **🎭 All 5 Character Node-RED Simulators** (ports 1881-1885)  
+- **🔗 MODBUS/TCP Servers** for each character (ports 5020-5024)
+- **📊 Integrated monitoring and control interface**
+
 ### Prerequisites
 - Node.js 18.0.0 or higher
 - npm 9.0.0 or higher
 
-### Installation
+### Manual Installation (Alternative)
 
 1. **Clone the repository:**
    ```bash
@@ -16,33 +33,22 @@ Welcome to the most EPIC industrial automation integration ever created! This pr
    cd epibus-pocketsocket
    ```
 
-2. **Run the setup script:**
-   ```bash
-   ./setup.sh
-   ```
-   
-   Or manually install:
+2. **Install dependencies:**
    ```bash
    npm install
-   cd pocketsocket-plc && npm install && cd ..
-   cd universal-plc-adapter && npm install && cd ..
-   cd suil-industrial && npm install && cd ..
-   cd character-agents && npm install && cd ..
-   cd astro-host && npm install && cd ..
    ```
 
-3. **Start the development environment:**
+3. **Start individual components:**
    ```bash
-   npm run dev
-   ```
-
-4. **Or start with a specific character:**
-   ```bash
-   npm run start:kyoko    # Detective mode - anomaly detection
-   npm run start:byakuya  # Efficiency mode - process optimization  
-   npm run start:chihiro  # Tech mode - system analysis
-   npm run start:celestia # Elegant mode - dashboard aesthetics
-   npm run start:sakura   # Athletic mode - performance monitoring
+   npm run dev:astro          # Astro-Host dashboard
+   npm run start:simulators   # All Node-RED simulators
+   
+   # Or start individual character simulators:
+   npm run start:kyoko        # 🕵️ Detective Lab (Port 1881)
+   npm run start:byakuya      # 💼 Efficiency Center (Port 1882)
+   npm run start:chihiro      # 💻 Integration Lab (Port 1883)
+   npm run start:celestia     # 🎨 Design Studio (Port 1884)
+   npm run start:sakura       # 💪 Testing Lab (Port 1885)
    ```
 
 ## 🎯 What This Is
@@ -122,6 +128,46 @@ npm run start:chihiro|celestia|sakura
 ```
 http://localhost:3000/industrial
 ```
+
+## 🎭 Character-Driven Node-RED Simulators
+
+The system includes **5 advanced Node-RED simulator instances**, each embodying a unique character personality with specialized industrial capabilities:
+
+### 🕵️ Kyoko Kirigiri - Detective Investigation Lab
+- **Port**: 1881 | **MODBUS**: 5020 | **Theme**: Detective Purple
+- **Specialization**: Anomaly detection, evidence collection, systematic investigation
+- **Features**: Advanced pattern recognition, case management, mystery solving algorithms
+- **Dashboard**: Real-time anomaly tracking with detective-style analysis
+
+### 💼 Byakuya Togami - Efficiency Optimization Center  
+- **Port**: 1882 | **MODBUS**: 5021 | **Theme**: Efficiency Blue
+- **Specialization**: Performance optimization, cost analysis, KPI monitoring
+- **Features**: OEE calculation, efficiency scoring, resource optimization
+- **Dashboard**: Manufacturing efficiency analysis with performance metrics
+
+### 💻 Chihiro Fujisaki - Technical Integration Lab
+- **Port**: 1883 | **MODBUS**: 5022 | **Theme**: Tech Green
+- **Specialization**: System integration, protocol bridging, innovation
+- **Features**: Multi-protocol support, API integration, innovation engine
+- **Dashboard**: Technical metrics and integration status monitoring
+
+### 🎨 Celestia Ludenberg - Aesthetic Design Studio
+- **Port**: 1884 | **MODBUS**: 5023 | **Theme**: Elegant Red
+- **Specialization**: UI/UX design, visualization, aesthetic optimization
+- **Features**: Dynamic color palettes, elegant interface design, user experience analysis
+- **Dashboard**: Beautiful visualizations with royal design elements
+
+### 💪 Sakura Ogami - Reliability Testing Lab
+- **Port**: 1885 | **MODBUS**: 5024 | **Theme**: Strength Orange
+- **Specialization**: Stress testing, endurance analysis, reliability validation
+- **Features**: Ultimate stress testing, failure analysis, system hardening
+- **Dashboard**: Comprehensive reliability metrics and testing results
+
+### 🤝 Collaborative Scenarios
+- **Multi-character orchestration** for complex industrial scenarios
+- **Cross-specialization collaboration** combining unique character strengths
+- **Comprehensive system testing** using all character capabilities
+- **Integrated monitoring** through the Astro-Host dashboard
 
 ## ⚡ Real-time Capabilities
 
