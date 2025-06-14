@@ -6,6 +6,8 @@ import WebSocket from 'ws';
 import Joi from 'joi';
 // @ts-ignore - Winston will be available at runtime
 import winston from 'winston';
+// @ts-ignore - jsmodbus will be available at runtime
+import jsmodbus from 'jsmodbus';
 
 /**
  * PocketSocket PLC Configuration Schema
