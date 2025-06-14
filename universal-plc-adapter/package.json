@@ -22,7 +22,7 @@
   "author": "AI-Kit Industrial Team",
   "license": "MIT",
   "dependencies": {
-    "@ai-kit/pocketsocket-plc": "workspace:*",
+    "@ai-kit/pocketsocket-plc": "file:../pocketsocket-plc",
     "joi": "^17.11.0",
     "winston": "^3.11.0",
     "lodash": "^4.17.21",

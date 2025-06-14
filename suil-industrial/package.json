@@ -22,7 +22,7 @@
   "author": "AI-Kit SUIL Team",
   "license": "MIT",
   "dependencies": {
-    "@ai-kit/universal-plc-adapter": "workspace:*",
+    "@ai-kit/universal-plc-adapter": "file:../universal-plc-adapter",
     "joi": "^17.11.0",
     "winston": "^3.11.0",
     "lodash": "^4.17.21",

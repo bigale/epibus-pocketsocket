@@ -62,10 +62,6 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@ai-kit/universal-framework": "workspace:*",
-    "@ai-kit/character-system": "workspace:*",
-    "@ai-kit/pocketsocket": "workspace:*",
-    "@ai-kit/suil": "workspace:*",
     "pymodbus": "^3.6.0",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2"
@@ -76,13 +72,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bigale/icpxmldb.git",
-    "directory": "ai-kit/industrial-iot"
+    "url": "https://github.com/bigale/epibus-pocketsocket.git"
   },
   "bugs": {
-    "url": "https://github.com/bigale/icpxmldb/issues"
+    "url": "https://github.com/bigale/epibus-pocketsocket/issues"
   },
-  "homepage": "https://github.com/bigale/icpxmldb/tree/main/ai-kit/industrial-iot#readme",
+  "homepage": "https://github.com/bigale/epibus-pocketsocket#readme",
   "config": {
     "characters": ["kyoko", "byakuya", "chihiro", "celestia", "sakura"],
     "defaultCharacter": "kyoko",

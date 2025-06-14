@@ -1,6 +1,49 @@
-# 🏭⚡ AI-Kit Industrial IoT - EpiBus Universal Integration
+# 🏭⚡ EpiBus-PocketSocket Industrial IoT Platform
 
 Welcome to the most EPIC industrial automation integration ever created! This project demonstrates the incredible power of our AI-Kit universal framework by completely revolutionizing EpiBus with character-driven intelligence, real-time capabilities, and lightning-fast performance.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18.0.0 or higher
+- npm 9.0.0 or higher
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/bigale/epibus-pocketsocket.git
+   cd epibus-pocketsocket
+   ```
+
+2. **Run the setup script:**
+   ```bash
+   ./setup.sh
+   ```
+   
+   Or manually install:
+   ```bash
+   npm install
+   cd pocketsocket-plc && npm install && cd ..
+   cd universal-plc-adapter && npm install && cd ..
+   cd suil-industrial && npm install && cd ..
+   cd character-agents && npm install && cd ..
+   cd astro-host && npm install && cd ..
+   ```
+
+3. **Start the development environment:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Or start with a specific character:**
+   ```bash
+   npm run start:kyoko    # Detective mode - anomaly detection
+   npm run start:byakuya  # Efficiency mode - process optimization  
+   npm run start:chihiro  # Tech mode - system analysis
+   npm run start:celestia # Elegant mode - dashboard aesthetics
+   npm run start:sakura   # Athletic mode - performance monitoring
+   ```
 
 ## 🎯 What This Is
 

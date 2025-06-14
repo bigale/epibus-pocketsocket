@@ -21,8 +21,8 @@
   "author": "AI-Kit Character Team",
   "license": "MIT",
   "dependencies": {
-    "@ai-kit/universal-plc-adapter": "workspace:*",
-    "@ai-kit/suil-industrial": "workspace:*",
+    "@ai-kit/universal-plc-adapter": "file:../universal-plc-adapter",
+    "@ai-kit/suil-industrial": "file:../suil-industrial",
     "joi": "^17.11.0",
     "winston": "^3.11.0",
     "lodash": "^4.17.21",
