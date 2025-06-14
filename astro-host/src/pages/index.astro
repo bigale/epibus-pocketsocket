@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IndustrialDashboard from '../components/IndustrialDashboard.tsx';
+---
+
+<Layout title="AI-Kit Industrial IoT Dashboard">
+  <main class="min-h-screen bg-gray-900">
+    <IndustrialDashboard client:load />
+  </main>
+</Layout>
