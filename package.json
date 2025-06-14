@@ -62,9 +62,10 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "pymodbus": "^3.6.0",
     "socket.io": "^4.7.2",
-    "socket.io-client": "^4.7.2"
+    "socket.io-client": "^4.7.2",
+    "ws": "^8.14.0",
+    "eventemitter3": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
