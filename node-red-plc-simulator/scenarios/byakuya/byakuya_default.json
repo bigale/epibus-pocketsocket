@@ -1,0 +1,177 @@
+{
+  "id": "byakuya_default",
+  "name": "Byakuya's Efficiency Optimization Center",
+  "description": "A sophisticated performance optimization and efficiency analysis environment for Byakuya Togami",
+  "flows": [
+    {
+      "id": "byakuya_main",
+      "label": "Byakuya's Efficiency Lab",
+      "nodes": [
+        {
+          "id": "performance_sensors",
+          "type": "modbus-read",
+          "name": "Performance Metrics",
+          "topic": "",
+          "unitid": 1,
+          "dataType": "HoldingRegister",
+          "adr": "0",
+          "quantity": "15",
+          "rate": "500",
+          "rateUnit": "ms",
+          "server": "byakuya_modbus_server",
+          "x": 150,
+          "y": 100,
+          "wires": [["efficiency_analyzer"]]
+        },
+        {
+          "id": "efficiency_analyzer",
+          "type": "function",
+          "name": "Efficiency Analysis",
+          "func": "const metrics = msg.payload;\nconst analysis = {\n  throughput: metrics[0] || 0,\n  quality: metrics[1] || 0,\n  availability: metrics[2] || 0,\n  performance: metrics[3] || 0,\n  oee: 0,\n  efficiency_score: 0,\n  cost_per_unit: metrics[4] || 0,\n  waste_percentage: metrics[5] || 0\n};\n\n// Calculate OEE (Overall Equipment Effectiveness)\nanalysis.oee = (analysis.availability / 100) * (analysis.performance / 100) * (analysis.quality / 100) * 100;\n\n// Byakuya's efficiency scoring\nanalysis.efficiency_score = (\n  analysis.throughput * 0.3 +\n  analysis.quality * 0.25 +\n  analysis.availability * 0.25 +\n  (100 - analysis.waste_percentage) * 0.2\n);\n\n// Performance classification\nlet classification = 'UNACCEPTABLE';\nlet recommendation = 'Immediate intervention required';\n\nif (analysis.efficiency_score >= 85) {\n  classification = 'EXCELLENT';\n  recommendation = 'Maintain current standards';\n} else if (analysis.efficiency_score >= 75) {\n  classification = 'GOOD';\n  recommendation = 'Minor optimizations possible';\n} else if (analysis.efficiency_score >= 60) {\n  classification = 'ACCEPTABLE';\n  recommendation = 'Significant improvements needed';\n}\n\nmsg.payload = {\n  analyst: 'Byakuya Togami',\n  timestamp: new Date().toISOString(),\n  metrics: analysis,\n  classification: classification,\n  recommendation: recommendation,\n  byakuya_assessment: 'Only perfection is acceptable in my domain.',\n  cost_analysis: {\n    current_efficiency: analysis.efficiency_score,\n    potential_savings: Math.max(0, (85 - analysis.efficiency_score) * 1000),\n    roi_projection: analysis.efficiency_score > 70 ? 'HIGH' : 'CRITICAL'\n  }\n};\n\nreturn msg;",
+          "outputs": 1,
+          "noerr": 0,
+          "x": 350,
+          "y": 100,
+          "wires": [["kpi_monitor", "cost_optimizer"]]
+        },
+        {
+          "id": "kpi_monitor",
+          "type": "function",
+          "name": "KPI Dashboard",
+          "func": "const data = msg.payload;\nconst kpiData = {\n  oee: data.metrics.oee.toFixed(2),\n  efficiency: data.metrics.efficiency_score.toFixed(2),\n  classification: data.classification,\n  throughput: data.metrics.throughput,\n  quality: data.metrics.quality,\n  availability: data.metrics.availability,\n  cost_savings: data.cost_analysis.potential_savings,\n  byakuya_note: 'Perfection is the only acceptable standard.',\n  timestamp: data.timestamp\n};\n\nmsg.payload = kpiData;\nreturn msg;",
+          "outputs": 1,
+          "noerr": 0,
+          "x": 550,
+          "y": 80,
+          "wires": [["dashboard_kpi"]]
+        },
+        {
+          "id": "cost_optimizer",
+          "type": "function",
+          "name": "Cost Optimization",
+          "func": "const data = msg.payload;\nconst optimization = {\n  current_cost: data.metrics.cost_per_unit,\n  waste_reduction_potential: data.metrics.waste_percentage * 0.8,\n  efficiency_improvement: Math.max(0, 85 - data.metrics.efficiency_score),\n  estimated_savings: data.cost_analysis.potential_savings,\n  priority_actions: [],\n  byakuya_directive: 'Excellence through systematic optimization'\n};\n\n// Generate Byakuya's optimization priorities\nif (data.metrics.quality < 95) {\n  optimization.priority_actions.push('Quality improvement initiative');\n}\nif (data.metrics.availability < 90) {\n  optimization.priority_actions.push('Availability optimization');\n}\nif (data.metrics.waste_percentage > 5) {\n  optimization.priority_actions.push('Waste reduction protocol');\n}\nif (data.metrics.throughput < 80) {\n  optimization.priority_actions.push('Throughput enhancement');\n}\n\nmsg.payload = optimization;\nreturn msg;",
+          "outputs": 1,
+          "noerr": 0,
+          "x": 550,
+          "y": 120,
+          "wires": [["dashboard_optimization"]]
+        },
+        {
+          "id": "dashboard_kpi",
+          "type": "ui_gauge",
+          "group": "byakuya_kpi",
+          "name": "Efficiency Score",
+          "order": 1,
+          "width": 6,
+          "height": 4,
+          "min": 0,
+          "max": 100,
+          "colors": ["#ff0000", "#ffaa00", "#00aa00"],
+          "seg1": 60,
+          "seg2": 80,
+          "format": "{{value}}%",
+          "units": "Efficiency",
+          "x": 750,
+          "y": 80,
+          "wires": []
+        },
+        {
+          "id": "dashboard_optimization",
+          "type": "ui_text",
+          "group": "byakuya_optimization",
+          "name": "Cost Optimization",
+          "order": 1,
+          "width": 12,
+          "height": 4,
+          "label": "Optimization Strategy",
+          "format": "Priority Actions: {{msg.payload.priority_actions.join(', ')}} | Potential Savings: ${{msg.payload.estimated_savings}}",
+          "layout": "row-spread",
+          "x": 750,
+          "y": 120,
+          "wires": []
+        },
+        {
+          "id": "byakuya_modbus_server",
+          "type": "modbus-server",
+          "name": "Byakuya's Performance Server",
+          "logEnabled": true,
+          "hostname": "127.0.0.1",
+          "serverPort": "5021",
+          "responseDelay": 50,
+          "delayUnit": "ms",
+          "coilsBufferSize": 10000,
+          "holdingBufferSize": 10000,
+          "inputBufferSize": 10000,
+          "discreteBufferSize": 10000,
+          "showErrors": false
+        }
+      ],
+      "configs": [
+        {
+          "id": "byakuya_kpi",
+          "type": "ui_group",
+          "name": "Performance KPIs",
+          "tab": "byakuya_dashboard",
+          "order": 1,
+          "disp": true,
+          "width": "12",
+          "collapse": false
+        },
+        {
+          "id": "byakuya_optimization",
+          "type": "ui_group",
+          "name": "Cost Optimization",
+          "tab": "byakuya_dashboard",
+          "order": 2,
+          "disp": true,
+          "width": "12",
+          "collapse": false
+        },
+        {
+          "id": "byakuya_dashboard",
+          "type": "ui_tab",
+          "name": "Byakuya's Efficiency Center",
+          "icon": "trending_up",
+          "order": 1,
+          "disabled": false,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "modbusConfig": {
+    "servers": [
+      {
+        "name": "byakuya_performance_server",
+        "port": 5021,
+        "unitId": 1,
+        "registers": {
+          "holding": {
+            "0-4": "performance_metrics",
+            "5-9": "cost_data",
+            "10-14": "optimization_parameters"
+          }
+        }
+      }
+    ]
+  },
+  "dashboardConfig": {
+    "theme": "efficiency-blue",
+    "title": "Byakuya's Efficiency Optimization Center",
+    "description": "Advanced performance analysis and cost optimization tools",
+    "personality_elements": {
+      "colors": ["#1e3a8a", "#3b82f6", "#93c5fd"],
+      "quotes": [
+        "Only perfection is acceptable in my domain.",
+        "Efficiency is the cornerstone of excellence.",
+        "Mediocrity has no place in proper management."
+      ],
+      "optimization_focus": [
+        "Cost reduction",
+        "Performance maximization",
+        "Quality improvement",
+        "Waste elimination"
+      ]
+    }
+  }
+}
