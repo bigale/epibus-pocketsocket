@@ -73,13 +73,19 @@ install_dependencies() {
     
     # Install root dependencies
     echo -e "${YELLOW}Installing root dependencies...${NC}"
-    npm install
+    npm install || {
+        echo -e "${RED}❌ Failed to install root dependencies${NC}"
+        exit 1
+    }
     
     # Install Astro-Host dependencies
     if [ -d "$ASTRO_HOST_DIR" ]; then
         echo -e "${YELLOW}Installing Astro-Host dependencies...${NC}"
         cd "$ASTRO_HOST_DIR"
-        npm install
+        npm install || {
+            echo -e "${RED}❌ Failed to install Astro-Host dependencies${NC}"
+            exit 1
+        }
         cd "$PROJECT_ROOT"
     fi
     
@@ -87,7 +93,21 @@ install_dependencies() {
     if [ -d "$SIMULATOR_DIR" ]; then
         echo -e "${YELLOW}Installing Node-RED simulator dependencies...${NC}"
         cd "$SIMULATOR_DIR"
-        npm install
+        
+        # Try to install dependencies, with fallback for problematic packages
+        npm install || {
+            echo -e "${YELLOW}⚠️ Some packages failed to install, trying without problematic dependencies...${NC}"
+            
+            # Remove problematic dependencies and retry
+            npm remove node-red-contrib-buffer-parser node-red-contrib-ui-level 2>/dev/null || true
+            npm install || {
+                echo -e "${RED}❌ Failed to install Node-RED simulator dependencies${NC}"
+                exit 1
+            }
+            
+            echo -e "${GREEN}✅ Node-RED simulator dependencies installed (some optional packages skipped)${NC}"
+        }
+        
         cd "$PROJECT_ROOT"
     fi
     

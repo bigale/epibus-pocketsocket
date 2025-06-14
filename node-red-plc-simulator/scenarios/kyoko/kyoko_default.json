@@ -1,0 +1,173 @@
+{
+  "id": "kyoko_default",
+  "name": "Kyoko's Detective Investigation Lab",
+  "description": "A sophisticated anomaly detection and investigation environment for Detective Kyoko Kirigiri",
+  "flows": [
+    {
+      "id": "kyoko_main",
+      "label": "Kyoko's Investigation Lab",
+      "nodes": [
+        {
+          "id": "modbus_sensors",
+          "type": "modbus-read",
+          "name": "Evidence Sensors",
+          "topic": "",
+          "unitid": 1,
+          "dataType": "HoldingRegister",
+          "adr": "0",
+          "quantity": "10",
+          "rate": "1000",
+          "rateUnit": "ms",
+          "server": "kyoko_modbus_server",
+          "x": 150,
+          "y": 100,
+          "wires": [["anomaly_detector"]]
+        },
+        {
+          "id": "anomaly_detector",
+          "type": "function",
+          "name": "Anomaly Detection",
+          "func": "const values = msg.payload;\nconst anomalies = [];\nfor (let i = 0; i < values.length; i++) {\n  const value = values[i];\n  const expected = context.get('baseline_' + i) || value;\n  const deviation = Math.abs(value - expected) / expected;\n  if (deviation > 0.15) {\n    anomalies.push({\n      sensor: i,\n      value: value,\n      expected: expected,\n      deviation: deviation,\n      severity: deviation > 0.5 ? 'HIGH' : 'MEDIUM'\n    });\n  }\n  context.set('baseline_' + i, expected * 0.95 + value * 0.05);\n}\nif (anomalies.length > 0) {\n  msg.payload = {\n    investigation_id: Date.now(),\n    anomalies: anomalies,\n    detective: 'Kyoko Kirigiri',\n    timestamp: new Date().toISOString(),\n    status: 'EVIDENCE_FOUND'\n  };\n  return [msg, null];\n} else {\n  msg.payload = {\n    status: 'ALL_CLEAR',\n    detective: 'Kyoko Kirigiri',\n    timestamp: new Date().toISOString()\n  };\n  return [null, msg];\n}",
+          "outputs": 2,
+          "noerr": 0,
+          "x": 350,
+          "y": 100,
+          "wires": [["evidence_collector"], ["status_monitor"]]
+        },
+        {
+          "id": "evidence_collector",
+          "type": "function",
+          "name": "Evidence Collection",
+          "func": "const evidence = msg.payload;\nevidence.case_file = 'CASE_' + Date.now();\nevidence.investigator = 'Detective Kyoko Kirigiri';\nevidence.method = 'Systematic Analysis';\nevidence.confidence = 0.85;\nlet evidenceLog = context.get('evidence_log') || [];\nevidenceLog.push(evidence);\ncontext.set('evidence_log', evidenceLog.slice(-50));\nmsg.payload = evidence;\nreturn msg;",
+          "outputs": 1,
+          "noerr": 0,
+          "x": 550,
+          "y": 80,
+          "wires": [["dashboard_investigation"]]
+        },
+        {
+          "id": "status_monitor",
+          "type": "function",
+          "name": "Status Monitor",
+          "func": "msg.payload.kyoko_note = 'Everything appears normal. Continuing surveillance...';\nreturn msg;",
+          "outputs": 1,
+          "noerr": 0,
+          "x": 550,
+          "y": 150,
+          "wires": [["dashboard_status"]]
+        },
+        {
+          "id": "dashboard_investigation",
+          "type": "ui_text",
+          "group": "kyoko_investigation",
+          "name": "Active Investigation",
+          "order": 1,
+          "width": 12,
+          "height": 3,
+          "label": "Investigation Status",
+          "format": "{{msg.payload.detective}} found {{msg.payload.anomalies.length}} anomalies in case {{msg.payload.case_file}}",
+          "layout": "row-spread",
+          "x": 750,
+          "y": 80,
+          "wires": []
+        },
+        {
+          "id": "dashboard_status",
+          "type": "ui_text",
+          "group": "kyoko_status",
+          "order": 2,
+          "width": 12,
+          "height": 1,
+          "name": "System Status",
+          "label": "System Status",
+          "format": "{{msg.payload.kyoko_note}}",
+          "layout": "row-spread",
+          "x": 750,
+          "y": 150,
+          "wires": []
+        },
+        {
+          "id": "kyoko_modbus_server",
+          "type": "modbus-server",
+          "name": "Kyoko's Evidence Server",
+          "logEnabled": true,
+          "hostname": "127.0.0.1",
+          "serverPort": "5020",
+          "responseDelay": 100,
+          "delayUnit": "ms",
+          "coilsBufferSize": 10000,
+          "holdingBufferSize": 10000,
+          "inputBufferSize": 10000,
+          "discreteBufferSize": 10000,
+          "showErrors": false
+        }
+      ],
+      "configs": [
+        {
+          "id": "kyoko_investigation",
+          "type": "ui_group",
+          "name": "Investigation Panel",
+          "tab": "kyoko_dashboard",
+          "order": 1,
+          "disp": true,
+          "width": "12",
+          "collapse": false
+        },
+        {
+          "id": "kyoko_status",
+          "type": "ui_group",
+          "name": "Detective Status",
+          "tab": "kyoko_dashboard",
+          "order": 2,
+          "disp": true,
+          "width": "12",
+          "collapse": false
+        },
+        {
+          "id": "kyoko_dashboard",
+          "type": "ui_tab",
+          "name": "Kyoko's Detective Lab",
+          "icon": "dashboard",
+          "order": 1,
+          "disabled": false,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "modbusConfig": {
+    "servers": [
+      {
+        "name": "kyoko_evidence_server",
+        "port": 5020,
+        "unitId": 1,
+        "registers": {
+          "holding": {
+            "0-9": "sensor_readings",
+            "10-19": "anomaly_flags",
+            "20-29": "investigation_data"
+          }
+        }
+      }
+    ]
+  },
+  "dashboardConfig": {
+    "theme": "detective-purple",
+    "title": "Detective Kyoko's Investigation Lab",
+    "description": "Advanced anomaly detection and systematic investigation tools",
+    "personality_elements": {
+      "colors": ["#6a5b7b", "#9b8aa0", "#b8a9c9"],
+      "quotes": [
+        "Truth will always come to light through careful observation.",
+        "Every detail matters in an investigation.",
+        "Logic and evidence will reveal the answer."
+      ],
+      "investigation_methods": [
+        "Statistical analysis",
+        "Pattern recognition", 
+        "Systematic evidence collection",
+        "Deductive reasoning"
+      ]
+    }
+  }
+}
