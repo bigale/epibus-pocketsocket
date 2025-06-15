@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { FlowActionButtons } from '../../components/FlowActionButtons.tsx';
 
 export async function getStaticPaths() {
   const flows = await getCollection('node-red-flows');
@@ -182,35 +183,7 @@ const characterColor = characterColors[flow.data.character] || 'blue';
         <h3 class="text-lg font-semibold mb-2">🎭 View Live Implementation</h3>
         <p class="text-gray-300 mb-4">See this flow in action on {flow.data.character}'s dashboard:</p>
         
-        <div class="flex gap-4">
-          <a 
-            href={`http://localhost:${
-              flow.data.character === 'kyoko' ? '1881' :
-              flow.data.character === 'byakuya' ? '1882' :
-              flow.data.character === 'chihiro' ? '1883' :
-              flow.data.character === 'celestia' ? '1884' :
-              '1885'
-            }/api/ui`}
-            target="_blank"
-            class={`bg-${characterColor}-600 hover:bg-${characterColor}-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2`}
-          >
-            🔗 Open {flow.data.character} Dashboard
-          </a>
-          
-          <a 
-            href={`http://localhost:${
-              flow.data.character === 'kyoko' ? '1881' :
-              flow.data.character === 'byakuya' ? '1882' :
-              flow.data.character === 'chihiro' ? '1883' :
-              flow.data.character === 'celestia' ? '1884' :
-              '1885'
-            }/`}
-            target="_blank"
-            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2"
-          >
-            ⚙️ Open Node-RED Editor
-          </a>
-        </div>
+        <FlowActionButtons client:load character={flow.data.character} characterColor={characterColor} />
       </div>
     </div>
   </div>
