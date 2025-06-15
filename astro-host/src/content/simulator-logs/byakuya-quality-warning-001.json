@@ -1,0 +1,21 @@
+{
+  "character": "byakuya",
+  "timestamp": "2025-06-14T19:20:15.456Z",
+  "level": "warn",
+  "message": "Quality threshold approaching warning level - statistical process control limits exceeded",
+  "nodeId": "spc-calculator",
+  "flowId": "quality-control-001",
+  "data": {
+    "currentCpk": 1.15,
+    "targetCpk": 1.33,
+    "defectRate": 0.023,
+    "sampleSize": 500,
+    "trend": "declining"
+  },
+  "metrics": {
+    "cpu": 28.7,
+    "memory": 62.1,
+    "connections": 12,
+    "messagesPerSecond": 89.3
+  }
+}

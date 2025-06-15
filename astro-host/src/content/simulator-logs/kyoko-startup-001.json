@@ -1,0 +1,19 @@
+{
+  "character": "kyoko",
+  "timestamp": "2025-06-14T19:15:30.123Z",
+  "level": "info",
+  "message": "Temperature monitoring flow initialized successfully",
+  "nodeId": "temp-monitor-001",
+  "flowId": "reactor-control",
+  "data": {
+    "sensorCount": 12,
+    "samplingRate": 5000,
+    "calibrationStatus": "verified"
+  },
+  "metrics": {
+    "cpu": 15.3,
+    "memory": 45.2,
+    "connections": 8,
+    "messagesPerSecond": 24.5
+  }
+}

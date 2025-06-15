@@ -1,0 +1,20 @@
+{
+  "character": "celestia",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "level": "info",
+  "message": "Daily log summary for celestia simulator",
+  "nodeId": "log-harvester",
+  "flowId": "celestia-main",
+  "data": {
+    "logFile": "/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/logs/celestia-simulator.log",
+    "port": 1884,
+    "entries": 20,
+    "recentActivity": "[2025-06-14T23:47:46.709Z] [Celestia Ludenberg] info: Installing aesthetic-optimizer node for Celestia Ludenberg [2025-06-14T23:47:46.709Z] [Celestia Ludenberg] info: Installing dramatic-effects node for Celestia Ludenberg [2025-06-14T23:47:46.709Z] [Celestia Ludenberg] info: Loading scenario: undefined for Celestia Ludenberg [2025-06-14T23:47:46.709Z] [Celestia Ludenberg] error: Failed to load scenario celestia_default: TypeError: Cannot read properties of undefined (reading 'forEach') [2025-06-14T23:47:46.710Z] [Celestia Ludenberg] warn: No default scenario found for Celestia Ludenberg, using empty flows"
+  },
+  "metrics": {
+    "cpu": 46,
+    "memory": 84,
+    "connections": 9,
+    "messagesPerSecond": 60
+  }
+}

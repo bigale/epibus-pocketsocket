@@ -1,0 +1,295 @@
+[
+  {
+    "id": "example-flow-tab",
+    "label": "Character Demo Flow",
+    "disabled": false,
+    "info": "This is an example flow that demonstrates basic character capabilities.",
+    "type": "tab"
+  },
+    {
+      "id": "inject-1",
+      "type": "inject",
+      "z": "example-flow-tab",
+      "name": "Start Demo",
+      "props": [
+        {
+          "p": "payload"
+        },
+        {
+          "p": "topic",
+          "vt": "str"
+        }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "demo",
+      "payload": "Hello from Character Simulator!",
+      "payloadType": "str",
+      "x": 150,
+      "y": 100,
+      "wires": [
+        [
+          "function-1"
+        ]
+      ]
+    },
+    {
+      "id": "function-1",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "Character Processor",
+      "func": "// This function demonstrates character-specific processing\nconst character = context.global.get('character') || 'Unknown';\nconst timestamp = new Date().toISOString();\n\nmsg.payload = {\n    message: msg.payload,\n    character: character,\n    timestamp: timestamp,\n    processed: true\n};\n\nmsg.topic = `${character}-processing`;\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 370,
+      "y": 100,
+      "wires": [
+        [
+          "debug-1",
+          "switch-1"
+        ]
+      ]
+    },
+    {
+      "id": "debug-1",
+      "type": "debug",
+      "z": "example-flow-tab",
+      "name": "Character Output",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "payload",
+      "targetType": "msg",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 600,
+      "y": 60,
+      "wires": []
+    },
+    {
+      "id": "switch-1",
+      "type": "switch",
+      "z": "example-flow-tab",
+      "name": "Character Router",
+      "property": "payload.character",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "Kyoko Kirigiri",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "Byakuya Togami",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "Chihiro Fujisaki",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "Celestia Ludenberg",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "Sakura Ogami",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "true",
+      "repair": false,
+      "outputs": 6,
+      "x": 380,
+      "y": 200,
+      "wires": [
+        [
+          "kyoko-action"
+        ],
+        [
+          "byakuya-action"
+        ],
+        [
+          "chihiro-action"
+        ],
+        [
+          "celestia-action"
+        ],
+        [
+          "sakura-action"
+        ],
+        [
+          "default-action"
+        ]
+      ]
+    },
+    {
+      "id": "kyoko-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "🎯 Detective Analysis",
+      "func": "// Kyoko's analytical approach\nmsg.payload.analysis = {\n    type: 'Detective Investigation',\n    method: 'Logical deduction and evidence analysis',\n    result: 'Anomaly patterns detected and categorized',\n    confidence: 0.95\n};\n\nmsg.payload.action = 'investigate_anomaly';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 600,
+      "y": 140,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "byakuya-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "💰 Efficiency Optimization",
+      "func": "// Byakuya's efficiency focus\nmsg.payload.analysis = {\n    type: 'Performance Optimization',\n    method: 'Strategic efficiency analysis',\n    result: 'Process optimization recommendations generated',\n    improvement: '23% efficiency gain potential'\n};\n\nmsg.payload.action = 'optimize_performance';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 620,
+      "y": 180,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "chihiro-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "💻 Data Processing",
+      "func": "// Chihiro's technical processing\nmsg.payload.analysis = {\n    type: 'Data Integration',\n    method: 'Advanced data processing algorithms',\n    result: 'Complex data structures normalized and integrated',\n    systems_connected: 5\n};\n\nmsg.payload.action = 'process_data';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 590,
+      "y": 220,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "celestia-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "👑 Risk Assessment",
+      "func": "// Celestia's risk analysis\nmsg.payload.analysis = {\n    type: 'Predictive Risk Analysis',\n    method: 'Strategic probability assessment',\n    result: 'Risk vectors identified and mitigation strategies proposed',\n    risk_level: 'Medium',\n    probability: 0.34\n};\n\nmsg.payload.action = 'assess_risk';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 590,
+      "y": 260,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "sakura-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "💪 Reliability Test",
+      "func": "// Sakura's reliability focus\nmsg.payload.analysis = {\n    type: 'System Reliability Analysis',\n    method: 'Endurance testing and stress analysis',\n    result: 'System stability verified under load conditions',\n    uptime_target: '99.9%',\n    stress_tolerance: 'High'\n};\n\nmsg.payload.action = 'test_reliability';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 590,
+      "y": 300,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "default-action",
+      "type": "function",
+      "z": "example-flow-tab",
+      "name": "Default Processing",
+      "func": "// Default character processing\nmsg.payload.analysis = {\n    type: 'General Analysis',\n    method: 'Standard processing workflow',\n    result: 'Basic analysis completed',\n    status: 'processed'\n};\n\nmsg.payload.action = 'general_process';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 590,
+      "y": 340,
+      "wires": [
+        [
+          "final-output"
+        ]
+      ]
+    },
+    {
+      "id": "final-output",
+      "type": "debug",
+      "z": "example-flow-tab",
+      "name": "Final Result",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "payload",
+      "targetType": "msg",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 810,
+      "y": 240,
+      "wires": []
+    },
+    {
+      "id": "inject-timer",
+      "type": "inject",
+      "z": "example-flow-tab",
+      "name": "Auto Demo (every 30s)",
+      "props": [
+        {
+          "p": "payload"
+        }
+      ],
+      "repeat": "30",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "Automated character demonstration",
+      "payloadType": "str",
+      "x": 190,
+      "y": 160,
+      "wires": [
+        [
+          "function-1"
+        ]
+      ]
+    }
+  ]
+]

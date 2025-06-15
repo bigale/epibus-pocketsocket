@@ -1,0 +1,18 @@
+{
+  "id": "alert-temp-001",
+  "character": "kyoko",
+  "timestamp": "2025-06-14T19:25:42.789Z",
+  "severity": "high",
+  "type": "temperature",
+  "source": {
+    "deviceId": "reactor-001",
+    "deviceName": "Primary Reactor Temperature Sensor",
+    "location": "Production Line A - Reactor Bay"
+  },
+  "message": "Reactor temperature exceeded warning threshold during batch processing cycle",
+  "value": 87.3,
+  "threshold": 85.0,
+  "unit": "°C",
+  "acknowledged": false,
+  "notes": "Detected during high-throughput production cycle. Investigating correlation with ambient temperature and cooling system performance."
+}

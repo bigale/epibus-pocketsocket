@@ -1,0 +1,20 @@
+{
+  "character": "byakuya",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "level": "info",
+  "message": "Daily log summary for byakuya simulator",
+  "nodeId": "log-harvester",
+  "flowId": "byakuya-main",
+  "data": {
+    "logFile": "/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/logs/byakuya-simulator.log",
+    "port": 1882,
+    "entries": 20,
+    "recentActivity": "[2025-06-14T23:47:44.713Z] [Byakuya Togami] info: Installing cost-analyzer node for Byakuya Togami [2025-06-14T23:47:44.714Z] [Byakuya Togami] info: Installing lean-processor node for Byakuya Togami [2025-06-14T23:47:44.714Z] [Byakuya Togami] info: Loading scenario: Byakuya's Efficiency Optimization Center for Byakuya Togami [2025-06-14T23:47:44.715Z] [Byakuya Togami] error: Failed to load scenario byakuya_default: TypeError: Cannot read properties of undefined (reading 'saveFlows') [2025-06-14T23:47:44.715Z] [Byakuya Togami] warn: No default scenario found for Byakuya Togami, using empty flows"
+  },
+  "metrics": {
+    "cpu": 26,
+    "memory": 60,
+    "connections": 18,
+    "messagesPerSecond": 15
+  }
+}

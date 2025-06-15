@@ -1,0 +1,28 @@
+{
+  "character": "kyoko",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "systemMetrics": {
+    "cpu": 63,
+    "memory": 43,
+    "disk": 26,
+    "network": {
+      "bytesIn": 13445,
+      "bytesOut": 20775,
+      "packetsIn": 1871,
+      "packetsOut": 397
+    }
+  },
+  "nodeRedMetrics": {
+    "activeFlows": 4,
+    "totalNodes": 68,
+    "messagesPerSecond": 74,
+    "errorRate": 0.006,
+    "uptime": 75007
+  },
+  "industrialMetrics": {
+    "connectedDevices": 8,
+    "dataPointsPerSecond": 84,
+    "alarmCount": 3,
+    "qualityPercentage": 97.73
+  }
+}

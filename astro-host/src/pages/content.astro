@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all content collections
+const simulatorLogs = await getCollection('simulator-logs');
+const nodeRedFlows = await getCollection('node-red-flows');
+const industrialAlerts = await getCollection('industrial-alerts');
+const performanceMetrics = await getCollection('performance-metrics');
+
+// Sort logs by timestamp (most recent first)
+const sortedLogs = simulatorLogs.sort((a, b) => 
+  new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime()
+);
+
+// Sort alerts by severity and timestamp
+const severityOrder = { critical: 4, high: 3, medium: 2, low: 1 };
+const sortedAlerts = industrialAlerts.sort((a, b) => {
+  const severityDiff = severityOrder[b.data.severity] - severityOrder[a.data.severity];
+  if (severityDiff !== 0) return severityDiff;
+  return new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime();
+});
+
+// Character colors for UI
+const characterColors = {
+  kyoko: 'from-purple-600 to-purple-800',
+  byakuya: 'from-yellow-600 to-yellow-800',
+  chihiro: 'from-green-600 to-green-800',
+  celestia: 'from-blue-600 to-blue-800',
+  sakura: 'from-pink-600 to-pink-800'
+};
+
+const getSeverityColor = (severity: string) => {
+  switch (severity) {
+    case 'critical': return 'bg-red-600';
+    case 'high': return 'bg-red-500';
+    case 'medium': return 'bg-yellow-500';
+    case 'low': return 'bg-blue-500';
+    default: return 'bg-gray-500';
+  }
+};
+
+const getLogLevelColor = (level: string) => {
+  switch (level) {
+    case 'error': return 'text-red-400';
+    case 'warn': return 'text-yellow-400';
+    case 'info': return 'text-blue-400';
+    case 'debug': return 'text-gray-400';
+    default: return 'text-white';
+  }
+};
+---
+
+<Layout title="AI-Kit Industrial IoT - Content Collections">
+  <div class="min-h-screen bg-gray-900 text-white">
+    <header class="bg-gray-800 border-b border-gray-700 px-6 py-4">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-white">Industrial IoT Content Collections</h1>
+        <p class="text-gray-400 mt-2">Real-time logs, flow documentation, and system metrics from Node-RED character simulators</p>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+      
+      <!-- Node-RED Flow Documentation -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white flex items-center">
+            <svg class="w-6 h-6 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+            </svg>
+            Node-RED Flow Documentation
+          </h2>
+          <span class="text-sm text-gray-400">{nodeRedFlows.length} flows documented</span>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {nodeRedFlows.map((flow) => (
+            <div class="bg-gray-700 rounded-lg p-4 border border-gray-600">
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="text-lg font-semibold text-white">{flow.data.title}</h3>
+                <span class={`px-2 py-1 rounded text-xs text-white bg-gradient-to-r ${characterColors[flow.data.character]}`}>
+                  {flow.data.character}
+                </span>
+              </div>
+              
+              <p class="text-gray-300 text-sm mb-3">{flow.data.description}</p>
+              
+              <div class="flex flex-wrap gap-2 mb-3">
+                {flow.data.tags.map((tag: string) => (
+                  <span class="px-2 py-1 bg-gray-600 text-gray-300 text-xs rounded">{tag}</span>
+                ))}
+              </div>
+              
+              <div class="flex justify-between items-center text-xs text-gray-400">
+                <span>v{flow.data.version}</span>
+                <span class={`px-2 py-1 rounded ${
+                  flow.data.difficulty === 'beginner' ? 'bg-green-600' :
+                  flow.data.difficulty === 'intermediate' ? 'bg-yellow-600' : 'bg-red-600'
+                } text-white`}>
+                  {flow.data.difficulty}
+                </span>
+              </div>
+              
+              <div class="mt-3">
+                <a href={`/content/flows/${flow.slug}`} class="text-blue-400 hover:text-blue-300 text-sm">
+                  View Documentation →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Industrial Alerts -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white flex items-center">
+            <svg class="w-6 h-6 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+            Industrial Alerts
+          </h2>
+          <span class="text-sm text-gray-400">{sortedAlerts.length} active alerts</span>
+        </div>
+        
+        <div class="space-y-3">
+          {sortedAlerts.map((alert) => (
+            <div class="bg-gray-700 rounded-lg p-4 border-l-4 border-gray-600" style={`border-left-color: ${getSeverityColor(alert.data.severity).replace('bg-', '#')}`}>
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class={`px-2 py-1 rounded text-xs text-white ${getSeverityColor(alert.data.severity)}`}>
+                      {alert.data.severity.toUpperCase()}
+                    </span>
+                    <span class={`px-2 py-1 rounded text-xs text-white bg-gradient-to-r ${characterColors[alert.data.character]}`}>
+                      {alert.data.character}
+                    </span>
+                    <span class="text-xs text-gray-400">
+                      {new Date(alert.data.timestamp).toLocaleString()}
+                    </span>
+                  </div>
+                  
+                  <h4 class="text-white font-medium mb-1">{alert.data.message}</h4>
+                  
+                  <div class="text-sm text-gray-300 mb-2">
+                    <strong>Source:</strong> {alert.data.source.deviceName} ({alert.data.source.deviceId})
+                    {alert.data.source.location && (
+                      <span class="text-gray-400"> - {alert.data.source.location}</span>
+                    )}
+                  </div>
+                  
+                  {alert.data.value && (
+                    <div class="text-sm text-gray-300">
+                      <strong>Value:</strong> {alert.data.value}{alert.data.unit} 
+                      (Threshold: {alert.data.threshold}{alert.data.unit})
+                    </div>
+                  )}
+                  
+                  {alert.data.notes && (
+                    <div class="text-sm text-gray-400 mt-2 italic">
+                      {alert.data.notes}
+                    </div>
+                  )}
+                </div>
+                
+                <div class="text-right">
+                  {alert.data.acknowledged ? (
+                    <span class="text-green-400 text-sm">✓ Acknowledged</span>
+                  ) : (
+                    <button class="text-yellow-400 hover:text-yellow-300 text-sm">
+                      Acknowledge
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- System Logs -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white flex items-center">
+            <svg class="w-6 h-6 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1V8z" clip-rule="evenodd" />
+            </svg>
+            Simulator Logs
+          </h2>
+          <span class="text-sm text-gray-400">{sortedLogs.length} recent entries</span>
+        </div>
+        
+        <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm">
+          <div class="space-y-2">
+            {sortedLogs.map((log) => (
+              <div class="flex items-start gap-3">
+                <span class="text-gray-500 text-xs whitespace-nowrap">
+                  {new Date(log.data.timestamp).toLocaleTimeString()}
+                </span>
+                <span class={`text-xs px-2 py-1 rounded ${getLogLevelColor(log.data.level)} bg-gray-800`}>
+                  {log.data.level.toUpperCase()}
+                </span>
+                <span class={`text-xs px-2 py-1 rounded text-white bg-gradient-to-r ${characterColors[log.data.character]}`}>
+                  {log.data.character}
+                </span>
+                <span class="text-gray-300 flex-1">{log.data.message}</span>
+                {log.data.metrics && (
+                  <span class="text-gray-400 text-xs">
+                    CPU: {log.data.metrics.cpu}% | 
+                    MEM: {log.data.metrics.memory}% | 
+                    MSG/s: {log.data.metrics.messagesPerSecond}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Performance Metrics -->
+      <section class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white flex items-center">
+            <svg class="w-6 h-6 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+            </svg>
+            Performance Metrics
+          </h2>
+          <span class="text-sm text-gray-400">{performanceMetrics.length} metric snapshots</span>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {performanceMetrics.map((metric) => (
+            <div class="bg-gray-700 rounded-lg p-4 border border-gray-600">
+              <div class="flex items-center justify-between mb-4">
+                <span class={`px-2 py-1 rounded text-xs text-white bg-gradient-to-r ${characterColors[metric.data.character]}`}>
+                  {metric.data.character}
+                </span>
+                <span class="text-xs text-gray-400">
+                  {new Date(metric.data.timestamp).toLocaleString()}
+                </span>
+              </div>
+              
+              <div class="space-y-3">
+                <div>
+                  <h4 class="text-sm font-medium text-gray-300 mb-2">System Resources</h4>
+                  <div class="space-y-1 text-xs">
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">CPU Usage:</span>
+                      <span class="text-white">{metric.data.systemMetrics.cpu}%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Memory:</span>
+                      <span class="text-white">{metric.data.systemMetrics.memory}%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Disk:</span>
+                      <span class="text-white">{metric.data.systemMetrics.disk}%</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-sm font-medium text-gray-300 mb-2">Node-RED</h4>
+                  <div class="space-y-1 text-xs">
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Active Flows:</span>
+                      <span class="text-white">{metric.data.nodeRedMetrics.activeFlows}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Messages/sec:</span>
+                      <span class="text-white">{metric.data.nodeRedMetrics.messagesPerSecond}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Error Rate:</span>
+                      <span class="text-white">{(metric.data.nodeRedMetrics.errorRate * 100).toFixed(3)}%</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="text-sm font-medium text-gray-300 mb-2">Industrial</h4>
+                  <div class="space-y-1 text-xs">
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Connected Devices:</span>
+                      <span class="text-white">{metric.data.industrialMetrics.connectedDevices}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Quality %:</span>
+                      <span class="text-white">{metric.data.industrialMetrics.qualityPercentage}%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-400">Alarms:</span>
+                      <span class="text-white">{metric.data.industrialMetrics.alarmCount}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </main>
+  </div>
+</Layout>
+
+<style>
+  /* Custom styles for better readability */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  }
+</style>

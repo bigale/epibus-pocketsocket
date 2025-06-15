@@ -1,0 +1,28 @@
+{
+  "character": "byakuya",
+  "timestamp": "2025-06-14T19:30:00.000Z",
+  "systemMetrics": {
+    "cpu": 28.7,
+    "memory": 62.1,
+    "disk": 45.3,
+    "network": {
+      "bytesIn": 1024576,
+      "bytesOut": 2048192,
+      "packetsIn": 1250,
+      "packetsOut": 1875
+    }
+  },
+  "nodeRedMetrics": {
+    "activeFlows": 8,
+    "totalNodes": 156,
+    "messagesPerSecond": 89.3,
+    "errorRate": 0.002,
+    "uptime": 14562
+  },
+  "industrialMetrics": {
+    "connectedDevices": 24,
+    "dataPointsPerSecond": 145.7,
+    "alarmCount": 3,
+    "qualityPercentage": 97.8
+  }
+}

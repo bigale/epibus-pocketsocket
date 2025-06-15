@@ -1,0 +1,28 @@
+{
+  "character": "chihiro",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "systemMetrics": {
+    "cpu": 25,
+    "memory": 50,
+    "disk": 36,
+    "network": {
+      "bytesIn": 3388,
+      "bytesOut": 32314,
+      "packetsIn": 3995,
+      "packetsOut": 1873
+    }
+  },
+  "nodeRedMetrics": {
+    "activeFlows": 4,
+    "totalNodes": 48,
+    "messagesPerSecond": 113,
+    "errorRate": 0.008,
+    "uptime": 46330
+  },
+  "industrialMetrics": {
+    "connectedDevices": 3,
+    "dataPointsPerSecond": 79,
+    "alarmCount": 5,
+    "qualityPercentage": 97.10
+  }
+}

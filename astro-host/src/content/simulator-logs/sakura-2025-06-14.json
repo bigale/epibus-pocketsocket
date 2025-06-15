@@ -1,0 +1,20 @@
+{
+  "character": "sakura",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "level": "info",
+  "message": "Daily log summary for sakura simulator",
+  "nodeId": "log-harvester",
+  "flowId": "sakura-main",
+  "data": {
+    "logFile": "/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/logs/sakura-simulator.log",
+    "port": 1885,
+    "entries": 20,
+    "recentActivity": "[2025-06-14T23:47:47.717Z] [Sakura Ogami] info: Installing load-generator node for Sakura Ogami [2025-06-14T23:47:47.718Z] [Sakura Ogami] info: Installing reliability-analyzer node for Sakura Ogami [2025-06-14T23:47:47.718Z] [Sakura Ogami] info: Loading scenario: undefined for Sakura Ogami [2025-06-14T23:47:47.719Z] [Sakura Ogami] error: Failed to load scenario sakura_default: TypeError: Cannot read properties of undefined (reading 'forEach') [2025-06-14T23:47:47.719Z] [Sakura Ogami] warn: No default scenario found for Sakura Ogami, using empty flows"
+  },
+  "metrics": {
+    "cpu": 57,
+    "memory": 48,
+    "connections": 20,
+    "messagesPerSecond": 53
+  }
+}

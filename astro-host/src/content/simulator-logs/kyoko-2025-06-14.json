@@ -1,0 +1,20 @@
+{
+  "character": "kyoko",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "level": "info",
+  "message": "Daily log summary for kyoko simulator",
+  "nodeId": "log-harvester",
+  "flowId": "kyoko-main",
+  "data": {
+    "logFile": "/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/logs/kyoko-simulator.log",
+    "port": 1881,
+    "entries": 20,
+    "recentActivity": "[2025-06-14T23:47:43.733Z] [Kyoko Kirigiri] info: Installing investigation-flow node for Kyoko Kirigiri [2025-06-14T23:47:43.733Z] [Kyoko Kirigiri] info: Installing mystery-generator node for Kyoko Kirigiri [2025-06-14T23:47:43.733Z] [Kyoko Kirigiri] info: Loading scenario: Kyoko's Detective Investigation Lab for Kyoko Kirigiri [2025-06-14T23:47:43.734Z] [Kyoko Kirigiri] error: Failed to load scenario kyoko_default: TypeError: Cannot read properties of undefined (reading 'saveFlows') [2025-06-14T23:47:43.734Z] [Kyoko Kirigiri] warn: No default scenario found for Kyoko Kirigiri, using empty flows"
+  },
+  "metrics": {
+    "cpu": 74,
+    "memory": 63,
+    "connections": 16,
+    "messagesPerSecond": 24
+  }
+}

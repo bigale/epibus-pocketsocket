@@ -1,0 +1,28 @@
+{
+  "character": "sakura",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "systemMetrics": {
+    "cpu": 71,
+    "memory": 80,
+    "disk": 27,
+    "network": {
+      "bytesIn": 48085,
+      "bytesOut": 33971,
+      "packetsIn": 3051,
+      "packetsOut": 3531
+    }
+  },
+  "nodeRedMetrics": {
+    "activeFlows": 12,
+    "totalNodes": 48,
+    "messagesPerSecond": 74,
+    "errorRate": 0.006,
+    "uptime": 69328
+  },
+  "industrialMetrics": {
+    "connectedDevices": 5,
+    "dataPointsPerSecond": 124,
+    "alarmCount": 3,
+    "qualityPercentage": 96.97
+  }
+}

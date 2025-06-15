@@ -1,0 +1,28 @@
+{
+  "character": "celestia",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "systemMetrics": {
+    "cpu": 62,
+    "memory": 78,
+    "disk": 34,
+    "network": {
+      "bytesIn": 3014,
+      "bytesOut": 27771,
+      "packetsIn": 2841,
+      "packetsOut": 459
+    }
+  },
+  "nodeRedMetrics": {
+    "activeFlows": 12,
+    "totalNodes": 46,
+    "messagesPerSecond": 93,
+    "errorRate": 0,
+    "uptime": 44674
+  },
+  "industrialMetrics": {
+    "connectedDevices": 4,
+    "dataPointsPerSecond": 110,
+    "alarmCount": 3,
+    "qualityPercentage": 98.32
+  }
+}

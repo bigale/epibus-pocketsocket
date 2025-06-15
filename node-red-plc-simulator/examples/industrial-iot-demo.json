@@ -1,0 +1,209 @@
+[
+  {
+    "id": "industrial-flow-tab",
+    "label": "Industrial IoT Demo",
+    "disabled": false,
+    "info": "Industrial IoT demonstration with MODBUS and character intelligence",
+    "type": "tab"
+  },
+  {
+    "id": "sensor-inject",
+    "type": "inject",
+    "z": "industrial-flow-tab",
+    "name": "Simulate PLC Data",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "5",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 150,
+    "y": 100,
+    "wires": [
+      [
+        "sensor-simulator"
+      ]
+    ]
+  },
+  {
+    "id": "sensor-simulator",
+    "type": "function",
+    "z": "industrial-flow-tab",
+    "name": "Industrial Sensor Simulator",
+    "func": "// Simulate realistic industrial sensor data\nconst baseTemp = 75;\nconst tempVariation = (Math.random() - 0.5) * 10;\nconst temperature = baseTemp + tempVariation;\n\nconst basePressure = 2.3;\nconst pressureVariation = (Math.random() - 0.5) * 0.5;\nconst pressure = basePressure + pressureVariation;\n\nconst baseFlow = 150;\nconst flowVariation = (Math.random() - 0.5) * 20;\nconst flowRate = baseFlow + flowVariation;\n\n// Simulate occasional anomalies\nconst anomaly = Math.random() < 0.1; // 10% chance\nif (anomaly) {\n    temperature = temperature + (Math.random() * 20 - 10);\n}\n\nmsg.payload = {\n    timestamp: new Date().toISOString(),\n    sensors: {\n        temperature: Math.round(temperature * 10) / 10,\n        pressure: Math.round(pressure * 100) / 100,\n        flow_rate: Math.round(flowRate * 10) / 10,\n        vibration: Math.round(Math.random() * 5 * 10) / 10,\n        power_consumption: Math.round((500 + Math.random() * 100) * 10) / 10\n    },\n    status: {\n        anomaly_detected: anomaly,\n        system_health: anomaly ? 'warning' : 'normal',\n        uptime_hours: Math.floor(Math.random() * 8760)\n    },\n    modbus_address: {\n        temperature: 40001,\n        pressure: 40002,\n        flow_rate: 40003,\n        vibration: 40004,\n        power: 40005\n    }\n};\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 100,
+    "wires": [
+      [
+        "character-analyzer",
+        "raw-data-debug"
+      ]
+    ]
+  },
+  {
+    "id": "character-analyzer",
+    "type": "function",
+    "z": "industrial-flow-tab",
+    "name": "AI Character Analysis",
+    "func": "const character = env.get('CHARACTER') || 'unknown';\nconst sensorData = msg.payload.sensors;\nconst status = msg.payload.status;\n\nlet characterResponse = {};\n\nswitch(character.toLowerCase()) {\n    case 'kyoko':\n        // Detective analysis - focus on anomalies\n        const suspiciousReadings = [];\n        if (sensorData.temperature > 85 || sensorData.temperature < 65) {\n            suspiciousReadings.push('temperature');\n        }\n        if (sensorData.pressure > 3.0 || sensorData.pressure < 1.5) {\n            suspiciousReadings.push('pressure');\n        }\n        if (sensorData.vibration > 3.5) {\n            suspiciousReadings.push('vibration');\n        }\n        \n        characterResponse = {\n            character: '🔍 Kyoko Kirigiri - Detective Analysis',\n            analysis: 'Systematic investigation of sensor anomalies',\n            findings: suspiciousReadings.length > 0 ? \n                `Suspicious readings detected in: ${suspiciousReadings.join(', ')}` : \n                'All readings within normal parameters',\n            recommendation: suspiciousReadings.length > 0 ? \n                'Immediate investigation required' : \n                'Continue monitoring',\n            confidence: suspiciousReadings.length > 0 ? '95%' : '90%'\n        };\n        break;\n        \n    case 'byakuya':\n        // Efficiency analysis\n        const efficiency = Math.round(((sensorData.flow_rate / 150) * \n                           (2.3 / sensorData.pressure) * \n                           (75 / sensorData.temperature)) * 100);\n        \n        characterResponse = {\n            character: '💰 Byakuya Togami - Efficiency Expert',\n            analysis: 'Strategic performance optimization assessment',\n            efficiency_rating: `${efficiency}%`,\n            cost_impact: efficiency < 80 ? 'High operational cost detected' : 'Cost-optimal operation',\n            recommendation: efficiency < 80 ? \n                'Implement immediate efficiency protocols' : \n                'Maintain current performance standards',\n            roi_potential: efficiency < 80 ? '+15-25% improvement possible' : 'Optimal performance achieved'\n        };\n        break;\n        \n    case 'chihiro':\n        // Technical data processing\n        const dataQuality = {\n            completeness: '100%',\n            accuracy: status.anomaly_detected ? '85%' : '98%',\n            latency: Math.round(Math.random() * 50) + 'ms'\n        };\n        \n        characterResponse = {\n            character: '💻 Chihiro Fujisaki - Data Engineer',\n            analysis: 'Advanced data processing and integration',\n            data_quality: dataQuality,\n            integration_status: 'All MODBUS registers successfully mapped',\n            recommendation: 'Data pipeline operating optimally',\n            next_optimization: 'Implementing predictive algorithms'\n        };\n        break;\n        \n    case 'celestia':\n        // Risk assessment\n        const riskFactors = [];\n        let riskLevel = 'Low';\n        \n        if (status.anomaly_detected) riskFactors.push('Sensor anomaly');\n        if (sensorData.vibration > 3.0) riskFactors.push('High vibration');\n        if (sensorData.power_consumption > 580) riskFactors.push('Power spike');\n        \n        if (riskFactors.length > 2) riskLevel = 'High';\n        else if (riskFactors.length > 0) riskLevel = 'Medium';\n        \n        characterResponse = {\n            character: '👑 Celestia Ludenberg - Risk Analyst',\n            analysis: 'Probability-based risk assessment',\n            risk_level: riskLevel,\n            risk_factors: riskFactors.length > 0 ? riskFactors : ['None detected'],\n            probability: Math.round(riskFactors.length * 33.3) + '%',\n            recommendation: riskLevel === 'High' ? \n                'Immediate risk mitigation required' : \n                'Continue standard monitoring'\n        };\n        break;\n        \n    case 'sakura':\n        // Reliability and stress testing\n        const systemStress = Math.round((\n            (sensorData.temperature / 100) + \n            (sensorData.pressure / 4) + \n            (sensorData.vibration / 5) + \n            (sensorData.power_consumption / 600)\n        ) * 25);\n        \n        characterResponse = {\n            character: '💪 Sakura Ogami - Reliability Engineer',\n            analysis: 'System endurance and reliability assessment',\n            stress_level: `${systemStress}%`,\n            uptime_target: '99.9%',\n            current_uptime: `${status.uptime_hours} hours`,\n            recommendation: systemStress > 75 ? \n                'System approaching stress limits - prepare maintenance' : \n                'System operating within tolerance',\n            durability_rating: systemStress < 50 ? 'Excellent' : systemStress < 75 ? 'Good' : 'Concerning'\n        };\n        break;\n        \n    default:\n        characterResponse = {\n            character: '❓ Standard Processing',\n            analysis: 'Basic industrial monitoring',\n            status: 'Data processed successfully'\n        };\n}\n\nmsg.payload.character_analysis = characterResponse;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 100,
+    "wires": [
+      [
+        "character-output",
+        "alert-switch"
+      ]
+    ]
+  },
+  {
+    "id": "raw-data-debug",
+    "type": "debug",
+    "z": "industrial-flow-tab",
+    "name": "Raw Sensor Data",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload.sensors",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 650,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "character-output",
+    "type": "debug",
+    "z": "industrial-flow-tab",
+    "name": "Character Analysis",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload.character_analysis",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 880,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "alert-switch",
+    "type": "switch",
+    "z": "industrial-flow-tab",
+    "name": "Alert Router",
+    "property": "payload.status.anomaly_detected",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      },
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 650,
+    "y": 140,
+    "wires": [
+      [
+        "emergency-alert"
+      ],
+      [
+        "normal-log"
+      ]
+    ]
+  },
+  {
+    "id": "emergency-alert",
+    "type": "function",
+    "z": "industrial-flow-tab",
+    "name": "🚨 Emergency Alert",
+    "func": "msg.payload = {\n    alert_type: 'INDUSTRIAL_ANOMALY',\n    severity: 'HIGH',\n    character: msg.payload.character_analysis.character,\n    timestamp: new Date().toISOString(),\n    message: 'Anomaly detected in industrial system',\n    sensor_data: msg.payload.sensors,\n    character_analysis: msg.payload.character_analysis,\n    action_required: 'Immediate investigation and response'\n};\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 880,
+    "y": 120,
+    "wires": [
+      [
+        "alert-output"
+      ]
+    ]
+  },
+  {
+    "id": "normal-log",
+    "type": "function",
+    "z": "industrial-flow-tab",
+    "name": "📊 Normal Log",
+    "func": "msg.payload = {\n    log_type: 'NORMAL_OPERATION',\n    character: msg.payload.character_analysis.character,\n    timestamp: new Date().toISOString(),\n    sensors: msg.payload.sensors,\n    analysis: msg.payload.character_analysis,\n    status: 'System operating normally'\n};\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 160,
+    "wires": [
+      [
+        "normal-output"
+      ]
+    ]
+  },
+  {
+    "id": "alert-output",
+    "type": "debug",
+    "z": "industrial-flow-tab",
+    "name": "🚨 ALERT",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1060,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "normal-output",
+    "type": "debug",
+    "z": "industrial-flow-tab",
+    "name": "Normal Operations",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1090,
+    "y": 160,
+    "wires": []
+  }
+]

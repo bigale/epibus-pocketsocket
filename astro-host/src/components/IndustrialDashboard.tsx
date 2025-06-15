@@ -30,6 +30,32 @@ const IndustrialDashboard: React.FC<Props> = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState('kyoko');
   
+  // Character switching functionality
+  const handleCharacterChange = (characterId: string) => {
+    console.log('IndustrialDashboard: handleCharacterChange called with:', characterId);
+    setSelectedCharacter(characterId);
+    
+    // Open the character's Node-RED dashboard
+    const portMap: Record<string, number> = {
+      'kyoko': 1881,
+      'byakuya': 1882,
+      'chihiro': 1883,
+      'celestia': 1884,
+      'sakura': 1885
+    };
+    
+    const port = portMap[characterId];
+    if (port) {
+      // Open the character's live dashboard
+      const dashboardUrl = `http://localhost:${port}/api/ui`;
+      window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800');
+      
+      // Also open the editor if needed
+      const editorUrl = `http://localhost:${port}`;
+      console.log(`Character ${characterId} switched. Dashboard: ${dashboardUrl}, Editor: ${editorUrl}`);
+    }
+  };
+  
   const {
     devices,
     analyses,
@@ -47,44 +73,42 @@ const IndustrialDashboard: React.FC<Props> = () => {
     
     // Start with demo data
     initializeDemoData();
+    
+    // Check simulator status periodically
+    checkSimulatorStatus();
+    const statusInterval = setInterval(checkSimulatorStatus, 30000); // Every 30 seconds
+    
+    return () => clearInterval(statusInterval);
   }, []);
 
   const initializeWebSocket = () => {
+    // Note: For now, we'll use API-based status checking instead of WebSocket
+    // The Node-RED simulators run on ports 1981-1985 for WebSocket connections
+    // This could be enhanced later to connect to specific character WebSocket endpoints
+    console.log('WebSocket initialization skipped - using API-based status monitoring');
+  };
+
+  const checkSimulatorStatus = async () => {
     try {
-      const ws = new WebSocket('ws://localhost:8080');
-      
-      ws.onopen = () => {
-        setIsConnected(true);
-        console.log('Connected to PLC real-time data stream');
-      };
-      
-      ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
+      const response = await fetch('/api/simulators/status');
+      if (response.ok) {
+        const status = await response.json();
+        console.log('Simulator status:', status);
         
-        switch (data.type) {
-          case 'signal_data':
-            updateSignal(data.data);
-            break;
-          case 'connection_status':
-            setIsConnected(data.connected);
-            break;
-          case 'analysis_complete':
-            // Handle analysis updates
-            break;
+        // Update connection status based on running simulators
+        const hasRunningSimulators = status.isRunning && status.runningCount > 0;
+        setIsConnected(hasRunningSimulators);
+        
+        // Update system running state to match actual simulator status
+        if (hasRunningSimulators && !isSystemRunning) {
+          startSystem();
+        } else if (!hasRunningSimulators && isSystemRunning) {
+          stopSystem();
         }
-      };
-      
-      ws.onclose = () => {
-        setIsConnected(false);
-        console.log('Disconnected from PLC stream');
-      };
-      
-      ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        setIsConnected(false);
-      };
+      }
     } catch (error) {
-      console.error('Failed to initialize WebSocket:', error);
+      console.error('Failed to check simulator status:', error);
+      setIsConnected(false);
     }
   };
 
@@ -171,11 +195,77 @@ const IndustrialDashboard: React.FC<Props> = () => {
     demoDevices.forEach(device => addDevice(device));
   };
 
-  const handleSystemToggle = () => {
-    if (isSystemRunning) {
-      stopSystem();
-    } else {
-      startSystem();
+  const handleSystemToggle = async () => {
+    console.log('System toggle clicked. Current state:', isSystemRunning);
+    
+    try {
+      if (isSystemRunning) {
+        console.log('Stopping Node-RED simulators...');
+        
+        // Call the actual stop script
+        const response = await fetch('/api/simulators/stop', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Stop API response:', result);
+          
+          stopSystem();
+          console.log('✅ Node-RED simulators stopped successfully');
+          
+          // Check status after a delay
+          setTimeout(checkSimulatorStatus, 2000);
+        } else {
+          // Fallback: try direct script execution
+          console.log('API call failed, trying direct script execution...');
+          
+          // For development, we'll use a simulated approach
+          // In production, this would call the actual management scripts
+          setTimeout(() => {
+            stopSystem();
+            alert('Simulators stopped! (This is a simulated action - in production this would call the actual Node-RED stop scripts)');
+          }, 1000);
+        }
+      } else {
+        console.log('Starting Node-RED simulators...');
+        
+        // Call the actual start script
+        const response = await fetch('/api/simulators/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Start API response:', result);
+          
+          startSystem();
+          console.log('✅ Node-RED simulators started successfully');
+          
+          // Check status after a delay
+          setTimeout(checkSimulatorStatus, 3000);
+        } else {
+          // Fallback: try direct approach
+          console.log('API call failed, trying direct script execution...');
+          
+          // For development, we'll provide manual instructions
+          setTimeout(() => {
+            startSystem();
+            const scriptPath = '/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/scripts/manage.sh';
+            alert(`Simulators started! (Simulated)\n\nTo actually start simulators, run:\n${scriptPath} start\n\nTo stop them, run:\n${scriptPath} stop`);
+          }, 1000);
+        }
+      }
+    } catch (error) {
+      console.error('Error toggling system:', error);
+      
+      // Provide manual instructions as fallback
+      const action = isSystemRunning ? 'stop' : 'start';
+      const scriptPath = '/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/scripts/manage.sh';
+      
+      alert(`System toggle error. To manually ${action} simulators:\n\nRun: ${scriptPath} ${action}\n\nOr open a terminal and navigate to the simulator directory.`);
     }
   };
 
@@ -199,9 +289,76 @@ const IndustrialDashboard: React.FC<Props> = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'overview':
-        return <PLCDashboard devices={devices} />;
+        return (
+          <div key="overview-content" className="space-y-6">
+            {/* System Overview Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Connected Devices</p>
+                    <p className="text-2xl font-bold text-white">{devices.length}</p>
+                  </div>
+                  <Cpu className="h-8 w-8 text-blue-500" />
+                </div>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Active Signals</p>
+                    <p className="text-2xl font-bold text-white">
+                      {devices.reduce((sum, device) => sum + device.signals.length, 0)}
+                    </p>
+                  </div>
+                  <Zap className="h-8 w-8 text-yellow-500" />
+                </div>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">System Status</p>
+                    <p className="text-2xl font-bold text-green-400">Healthy</p>
+                  </div>
+                  <Activity className="h-8 w-8 text-green-500" />
+                </div>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Active Alarms</p>
+                    <p className="text-2xl font-bold text-white">{alarms.length}</p>
+                  </div>
+                  <AlertTriangle className="h-8 w-8 text-red-500" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Quick Device Summary */}
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+              <h3 className="text-lg font-semibold text-white mb-4">Quick Device Summary</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {devices.slice(0, 4).map((device) => (
+                  <div key={`overview-${device.id}`} className="flex items-center justify-between p-3 bg-gray-700 rounded">
+                    <div>
+                      <p className="text-white font-medium">{device.name}</p>
+                      <p className="text-sm text-gray-400">{device.type}</p>
+                    </div>
+                    <div className={`w-3 h-3 rounded-full ${
+                      device.healthStatus === 'healthy' ? 'bg-green-500' :
+                      device.healthStatus === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
+                    }`} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
       case 'devices':
-        return <PLCDashboard devices={devices} />;
+        return (
+          <div key="devices-content">
+            <PLCDashboard devices={devices} />
+          </div>
+        );
       case 'signals':
         return <SignalMonitor devices={devices} />;
       case 'analyses':
@@ -209,14 +366,22 @@ const IndustrialDashboard: React.FC<Props> = () => {
       case 'alarms':
         return <AlarmPanel alarms={alarms} />;
       case 'characters':
+        console.log('IndustrialDashboard: Rendering CharacterSelector with props:', {
+          currentCharacter: selectedCharacter,
+          onCharacterChange: typeof handleCharacterChange
+        });
         return <CharacterSelector 
-          selectedCharacter={selectedCharacter}
-          onSelectCharacter={setSelectedCharacter}
+          currentCharacter={selectedCharacter}
+          onCharacterChange={handleCharacterChange}
         />;
       case 'simulators':
         return <NodeRedSimulatorDashboard />;
       default:
-        return <PLCDashboard devices={devices} />;
+        return (
+          <div key="default-content">
+            <PLCDashboard devices={devices} />
+          </div>
+        );
     }
   };
 
@@ -244,6 +409,18 @@ const IndustrialDashboard: React.FC<Props> = () => {
             </div>
 
             <div className="flex items-center space-x-4">
+              {/* Content Collections Link */}
+              <a
+                href="/content-showcase"
+                className="flex items-center space-x-2 px-3 py-2 rounded-md bg-purple-600 hover:bg-purple-700 transition-colors text-sm"
+                title="View Content Collections"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>Content</span>
+              </a>
+              
               {/* System Control */}
               <button
                 onClick={handleSystemToggle}

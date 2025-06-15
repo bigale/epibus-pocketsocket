@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all content collections
+const simulatorLogs = await getCollection('simulator-logs');
+const nodeRedFlows = await getCollection('node-red-flows');
+const industrialAlerts = await getCollection('industrial-alerts');
+const performanceMetrics = await getCollection('performance-metrics');
+
+// Sort by timestamp (newest first)
+const sortedLogs = simulatorLogs.sort((a, b) => new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime());
+const sortedAlerts = industrialAlerts.sort((a, b) => new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime());
+const sortedMetrics = performanceMetrics.sort((a, b) => new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime());
+
+// Group by character
+const groupByCharacter = (items) => {
+  return items.reduce((acc, item) => {
+    const char = item.data.character;
+    if (!acc[char]) acc[char] = [];
+    acc[char].push(item);
+    return acc;
+  }, {});
+};
+
+const logsByCharacter = groupByCharacter(sortedLogs);
+const metricsByCharacter = groupByCharacter(sortedMetrics);
+---
+
+<Layout title="AI-Kit Industrial IoT Content Collections">
+  <div class="min-h-screen bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="bg-gray-800 border-b border-gray-700 p-6">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-white mb-2">🏭 AI-Kit Content Collections</h1>
+        <p class="text-gray-300">Live data from Node-RED Industrial IoT Character Simulators</p>
+        <div class="mt-4 flex gap-4 text-sm">
+          <span class="bg-blue-600 px-3 py-1 rounded">📊 {simulatorLogs.length} Log Entries</span>
+          <span class="bg-green-600 px-3 py-1 rounded">📋 {nodeRedFlows.length} Flow Docs</span>
+          <span class="bg-red-600 px-3 py-1 rounded">🚨 {industrialAlerts.length} Alerts</span>
+          <span class="bg-purple-600 px-3 py-1 rounded">⚡ {performanceMetrics.length} Metrics</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto p-6">
+      <!-- Navigation Tabs -->
+      <div class="mb-8">
+        <nav class="flex space-x-1">
+          <button onclick="showTab('flows')" id="tab-flows" class="tab-button bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">
+            📋 Node-RED Flows
+          </button>
+          <button onclick="showTab('logs')" id="tab-logs" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+            📊 Live Logs
+          </button>
+          <button onclick="showTab('alerts')" id="tab-alerts" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+            🚨 Alerts
+          </button>
+          <button onclick="showTab('metrics')" id="tab-metrics" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+            ⚡ Performance
+          </button>
+        </nav>
+      </div>
+
+      <!-- Node-RED Flows Tab -->
+      <div id="content-flows" class="tab-content">
+        <h2 class="text-2xl font-bold mb-6">📋 Node-RED Flow Documentation</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {nodeRedFlows.map((flow) => (
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-blue-500 transition-colors">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold text-white">{flow.data.title}</h3>
+                <span class={`w-3 h-3 rounded-full ${
+                  flow.data.character === 'kyoko' ? 'bg-purple-500' :
+                  flow.data.character === 'byakuya' ? 'bg-yellow-500' :
+                  flow.data.character === 'chihiro' ? 'bg-green-500' :
+                  flow.data.character === 'celestia' ? 'bg-red-500' :
+                  'bg-pink-500'
+                }`}></span>
+              </div>
+              
+              <p class="text-gray-300 text-sm mb-4">{flow.data.description}</p>
+              
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Character:</span>
+                  <span class="text-white capitalize">{flow.data.character}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Version:</span>
+                  <span class="text-white">{flow.data.version}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-400">Difficulty:</span>
+                  <span class={`px-2 py-1 rounded text-xs ${
+                    flow.data.difficulty === 'beginner' ? 'bg-green-600' :
+                    flow.data.difficulty === 'intermediate' ? 'bg-yellow-600' :
+                    'bg-red-600'
+                  }`}>{flow.data.difficulty}</span>
+                </div>
+              </div>
+              
+              <div class="mt-4 flex flex-wrap gap-1">
+                {flow.data.tags.map((tag) => (
+                  <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs">{tag}</span>
+                ))}
+              </div>
+              
+              <a href={`/flows/${flow.slug}`} class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors">
+                View Documentation →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Live Logs Tab -->
+      <div id="content-logs" class="tab-content hidden">
+        <h2 class="text-2xl font-bold mb-6">📊 Live Simulator Logs</h2>
+        <div class="space-y-6">
+          {Object.entries(logsByCharacter).map(([character, logs]) => (
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold mb-4 capitalize flex items-center gap-2">
+                <span class={`w-4 h-4 rounded-full ${
+                  character === 'kyoko' ? 'bg-purple-500' :
+                  character === 'byakuya' ? 'bg-yellow-500' :
+                  character === 'chihiro' ? 'bg-green-500' :
+                  character === 'celestia' ? 'bg-red-500' :
+                  'bg-pink-500'
+                }`}></span>
+                {character} Simulator Logs
+              </h3>
+              
+              <div class="space-y-3">
+                {logs.slice(0, 3).map((log) => (
+                  <div class="bg-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class={`px-2 py-1 rounded text-xs font-medium ${
+                        log.data.level === 'error' ? 'bg-red-600' :
+                        log.data.level === 'warn' ? 'bg-yellow-600' :
+                        log.data.level === 'debug' ? 'bg-gray-600' :
+                        'bg-blue-600'
+                      }`}>{log.data.level.toUpperCase()}</span>
+                      <span class="text-gray-400 text-sm">
+                        {new Date(log.data.timestamp).toLocaleString()}
+                      </span>
+                    </div>
+                    <p class="text-white">{log.data.message}</p>
+                    {log.data.data && (
+                      <div class="mt-2 text-sm text-gray-300">
+                        <strong>Metrics:</strong> 
+                        CPU: {log.data.metrics?.cpu}%, 
+                        Memory: {log.data.metrics?.memory}%, 
+                        Connections: {log.data.metrics?.connections}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Alerts Tab -->
+      <div id="content-alerts" class="tab-content hidden">
+        <h2 class="text-2xl font-bold mb-6">🚨 Industrial Alerts</h2>
+        <div class="space-y-4">
+          {sortedAlerts.map((alert) => (
+            <div class={`rounded-lg p-6 border-l-4 ${
+              alert.data.severity === 'critical' ? 'bg-red-900 border-red-500' :
+              alert.data.severity === 'high' ? 'bg-orange-900 border-orange-500' :
+              alert.data.severity === 'medium' ? 'bg-yellow-900 border-yellow-500' :
+              'bg-blue-900 border-blue-500'
+            }`}>
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-3">
+                  <span class={`px-3 py-1 rounded font-medium text-sm ${
+                    alert.data.severity === 'critical' ? 'bg-red-600' :
+                    alert.data.severity === 'high' ? 'bg-orange-600' :
+                    alert.data.severity === 'medium' ? 'bg-yellow-600' :
+                    'bg-blue-600'
+                  }`}>{alert.data.severity.toUpperCase()}</span>
+                  <span class="text-white font-semibold">{alert.data.type.toUpperCase()}</span>
+                </div>
+                <span class="text-gray-300 text-sm">
+                  {new Date(alert.data.timestamp).toLocaleString()}
+                </span>
+              </div>
+              
+              <h3 class="text-lg font-semibold text-white mb-2">{alert.data.message}</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <span class="text-gray-400">Source:</span>
+                  <span class="text-white ml-2">{alert.data.source.deviceName}</span>
+                </div>
+                <div>
+                  <span class="text-gray-400">Character:</span>
+                  <span class="text-white ml-2 capitalize">{alert.data.character}</span>
+                </div>
+                <div>
+                  <span class="text-gray-400">Value:</span>
+                  <span class="text-white ml-2">{alert.data.value} {alert.data.unit}</span>
+                </div>
+              </div>
+              
+              {alert.data.notes && (
+                <p class="mt-3 text-gray-300 text-sm">{alert.data.notes}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Performance Metrics Tab -->
+      <div id="content-metrics" class="tab-content hidden">
+        <h2 class="text-2xl font-bold mb-6">⚡ Performance Metrics</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {Object.entries(metricsByCharacter).map(([character, metrics]) => {
+            const latestMetric = metrics[0];
+            return (
+              <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <h3 class="text-xl font-semibold mb-4 capitalize flex items-center gap-2">
+                  <span class={`w-4 h-4 rounded-full ${
+                    character === 'kyoko' ? 'bg-purple-500' :
+                    character === 'byakuya' ? 'bg-yellow-500' :
+                    character === 'chihiro' ? 'bg-green-500' :
+                    character === 'celestia' ? 'bg-red-500' :
+                    'bg-pink-500'
+                  }`}></span>
+                  {character} Performance
+                </h3>
+                
+                {latestMetric && (
+                  <div class="space-y-4">
+                    <!-- System Metrics -->
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-400 mb-2">System Resources</h4>
+                      <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-white">{latestMetric.data.systemMetrics.cpu}%</div>
+                          <div class="text-xs text-gray-400">CPU Usage</div>
+                        </div>
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-white">{latestMetric.data.systemMetrics.memory}%</div>
+                          <div class="text-xs text-gray-400">Memory Usage</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Node-RED Metrics -->
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-400 mb-2">Node-RED Performance</h4>
+                      <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-white">{latestMetric.data.nodeRedMetrics.activeFlows}</div>
+                          <div class="text-xs text-gray-400">Active Flows</div>
+                        </div>
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-white">{latestMetric.data.nodeRedMetrics.messagesPerSecond}</div>
+                          <div class="text-xs text-gray-400">Msg/sec</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Industrial Metrics -->
+                    <div>
+                      <h4 class="text-sm font-medium text-gray-400 mb-2">Industrial IoT</h4>
+                      <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-white">{latestMetric.data.industrialMetrics.connectedDevices}</div>
+                          <div class="text-xs text-gray-400">Connected Devices</div>
+                        </div>
+                        <div class="bg-gray-700 rounded p-3">
+                          <div class="text-2xl font-bold text-green-400">{latestMetric.data.industrialMetrics.qualityPercentage.toFixed(1)}%</div>
+                          <div class="text-xs text-gray-400">Quality Score</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="text-xs text-gray-400 text-center pt-2 border-t border-gray-700">
+                      Last updated: {new Date(latestMetric.data.timestamp).toLocaleString()}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Dashboard -->
+    <div class="fixed bottom-6 right-6">
+      <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition-colors flex items-center gap-2">
+        ← Back to Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabName) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      
+      // Reset all tab buttons
+      document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('bg-blue-600', 'text-white');
+        button.classList.add('bg-gray-700', 'text-gray-300');
+      });
+      
+      // Show selected tab content
+      document.getElementById(`content-${tabName}`).classList.remove('hidden');
+      
+      // Highlight selected tab button
+      const selectedButton = document.getElementById(`tab-${tabName}`);
+      selectedButton.classList.remove('bg-gray-700', 'text-gray-300');
+      selectedButton.classList.add('bg-blue-600', 'text-white');
+    }
+    
+    // Auto-refresh every 30 seconds
+    setInterval(() => {
+      window.location.reload();
+    }, 30000);
+  </script>
+</Layout>

@@ -1,0 +1,20 @@
+{
+  "character": "chihiro",
+  "timestamp": "2025-06-14T20:10:16-04:00",
+  "level": "info",
+  "message": "Daily log summary for chihiro simulator",
+  "nodeId": "log-harvester",
+  "flowId": "chihiro-main",
+  "data": {
+    "logFile": "/home/bigale/repos/icpxmldb/ai-kit/industrial-iot/node-red-plc-simulator/logs/chihiro-simulator.log",
+    "port": 1883,
+    "entries": 20,
+    "recentActivity": "[2025-06-14T23:47:45.708Z] [Chihiro Fujisaki] info: Installing algorithm-tester node for Chihiro Fujisaki [2025-06-14T23:47:45.708Z] [Chihiro Fujisaki] info: Installing innovation-lab node for Chihiro Fujisaki [2025-06-14T23:47:45.709Z] [Chihiro Fujisaki] info: Loading scenario: undefined for Chihiro Fujisaki [2025-06-14T23:47:45.709Z] [Chihiro Fujisaki] error: Failed to load scenario chihiro_default: TypeError: Cannot read properties of undefined (reading 'forEach') [2025-06-14T23:47:45.709Z] [Chihiro Fujisaki] warn: No default scenario found for Chihiro Fujisaki, using empty flows"
+  },
+  "metrics": {
+    "cpu": 29,
+    "memory": 76,
+    "connections": 24,
+    "messagesPerSecond": 100
+  }
+}

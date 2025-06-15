@@ -64,8 +64,41 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Debug logging
+  console.log('CharacterSelector props:', { currentCharacter, onCharacterChange: typeof onCharacterChange });
+
   const getCurrentCharacterData = () => {
     return characters.find(c => c.id === currentCharacter) || characters[0];
+  };
+
+  const handleCharacterSelect = (characterId: string) => {
+    console.log('Character selected:', characterId, 'onCharacterChange type:', typeof onCharacterChange);
+    
+    if (typeof onCharacterChange === 'function') {
+      onCharacterChange(characterId);
+      setIsOpen(false);
+    } else {
+      console.error('onCharacterChange is not a function! Received:', onCharacterChange);
+      
+      // Fallback: Try to directly open the character's dashboard
+      const portMap: Record<string, number> = {
+        'kyoko': 1881,
+        'byakuya': 1882,
+        'chihiro': 1883,
+        'celestia': 1884,
+        'sakura': 1885
+      };
+      
+      const port = portMap[characterId];
+      if (port) {
+        const dashboardUrl = `http://localhost:${port}/api/ui`;
+        console.log('Fallback: Opening dashboard directly:', dashboardUrl);
+        window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800');
+        setIsOpen(false);
+      } else {
+        alert(`Character selection error: Cannot switch to ${characterId}. Please refresh the page.`);
+      }
+    }
   };
 
   const currentChar = getCurrentCharacterData();
@@ -121,10 +154,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
             {characters.map((character) => (
               <button
                 key={character.id}
-                onClick={() => {
-                  onCharacterChange(character.id);
-                  setIsOpen(false);
-                }}
+                onClick={() => handleCharacterSelect(character.id)}
                 className={`w-full text-left px-4 py-3 hover:bg-gray-50 border-l-4 ${getBorderClass(character.color)} ${
                   character.id === currentCharacter ? 'bg-gray-50' : ''
                 } transition-colors duration-150`}

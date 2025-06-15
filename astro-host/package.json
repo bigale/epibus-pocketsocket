@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint src/**/*.{ts,tsx,astro}",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "restart": "pkill -f 'astro dev' || true && npm run dev",
+    "stop": "pkill -f 'astro dev' || echo 'No astro dev process found'"
   },
   "keywords": [
     "astro-host",
