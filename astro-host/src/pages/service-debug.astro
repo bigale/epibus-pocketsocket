@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { DebugServiceInfo } from '../components/DebugServiceInfo.tsx';
+---
+
+<Layout title="Service Debug Info">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Service Debug Information</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <DebugServiceInfo client:load character="kyoko" />
+      <DebugServiceInfo client:load character="byakuya" />
+      <DebugServiceInfo client:load character="chihiro" />
+      <DebugServiceInfo client:load character="celestia" />
+      <DebugServiceInfo client:load character="sakura" />
+    </div>
+    
+    <div class="mt-8 bg-gray-800 p-6 rounded">
+      <h2 class="text-xl font-bold mb-4">Raw API Data</h2>
+      <button id="load-api" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Load Raw API Data
+      </button>
+      <pre id="api-data" class="mt-4 bg-gray-900 p-4 rounded text-xs overflow-auto">
+        Click button to load...
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('load-api').addEventListener('click', async function() {
+      const pre = document.getElementById('api-data');
+      try {
+        const response = await fetch('/api/node-red-status');
+        const data = await response.json();
+        pre.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        pre.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</Layout>

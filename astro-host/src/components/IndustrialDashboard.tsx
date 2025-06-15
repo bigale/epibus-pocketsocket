@@ -41,12 +41,10 @@ const IndustrialDashboard: React.FC<Props> = () => {
     
     // Get dynamic URLs from service discovery
     const dashboardUrl = getDashboardUrl(characterId);
-    const editorUrl = getEditorUrl(characterId);
     
     if (dashboardUrl) {
-      // Open the character's live dashboard with dynamically discovered path
-      window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800');
-      console.log(`Character ${characterId} switched. Dashboard: ${dashboardUrl}, Editor: ${editorUrl}`);
+      // Open dashboard in popup
+      window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800,scrollbars=yes,resizable=yes');
     } else {
       console.warn(`No dashboard URL available for character: ${characterId}`);
       alert(`${characterId} character service is not available. Please check if the simulator is running.`);

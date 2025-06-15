@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pure HTML Button Test">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Pure HTML Button Test (No React)</h1>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-purple-400">1. Kyoko (Purple)</h2>
+        <div class="flex gap-4">
+          <button 
+            onclick="window.open('http://localhost:1881/api/ui/', '_blank'); console.log('Kyoko dashboard clicked');"
+            class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            🔗 Open kyoko Dashboard ✓
+          </button>
+          <button 
+            onclick="window.open('http://localhost:1881/', '_blank'); console.log('Kyoko editor clicked');"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            ⚙️ Node-RED Editor ✓
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">2. Byakuya (Yellow)</h2>
+        <div class="flex gap-4">
+          <button 
+            onclick="window.open('http://localhost:1882/api/ui/', '_blank'); console.log('Byakuya dashboard clicked');"
+            class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            🔗 Open byakuya Dashboard ✓
+          </button>
+          <button 
+            onclick="window.open('http://localhost:1882/', '_blank'); console.log('Byakuya editor clicked');"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            ⚙️ Node-RED Editor ✓
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">3. Chihiro (Green)</h2>
+        <div class="flex gap-4">
+          <button 
+            onclick="window.open('http://localhost:1883/api/ui/', '_blank'); console.log('Chihiro dashboard clicked');"
+            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            🔗 Open chihiro Dashboard ✓
+          </button>
+          <button 
+            onclick="window.open('http://localhost:1883/', '_blank'); console.log('Chihiro editor clicked');"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            ⚙️ Node-RED Editor ✓
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">4. Celestia (Red)</h2>
+        <div class="flex gap-4">
+          <button 
+            onclick="window.open('http://localhost:1884/api/ui/', '_blank'); console.log('Celestia dashboard clicked');"
+            class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            🔗 Open celestia Dashboard ✓
+          </button>
+          <button 
+            onclick="window.open('http://localhost:1884/', '_blank'); console.log('Celestia editor clicked');"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            ⚙️ Node-RED Editor ✓
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-pink-400">5. Sakura (Pink)</h2>
+        <div class="flex gap-4">
+          <button 
+            onclick="window.open('http://localhost:1885/api/ui/', '_blank'); console.log('Sakura dashboard clicked');"
+            class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            🔗 Open sakura Dashboard ✓
+          </button>
+          <button 
+            onclick="window.open('http://localhost:1885/', '_blank'); console.log('Sakura editor clicked');"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            ⚙️ Node-RED Editor ✓
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-green-900 border border-green-700 p-4 rounded">
+      <h3 class="font-bold text-green-200 mb-2">🧪 Pure HTML Test:</h3>
+      <p class="text-green-100">These are pure HTML buttons with inline onclick handlers - no React at all.</p>
+      <p class="text-green-100">If these work consistently, the issue is definitely with React component hydration.</p>
+    </div>
+  </div>
+</Layout>

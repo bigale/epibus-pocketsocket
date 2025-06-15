@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SimpleFlowActionButtons } from '../components/SimpleFlowActionButtons.tsx';
+---
+
+<Layout title="Reverse Order Test">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Reverse Order Test</h1>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-pink-400">1. Sakura (Pink) - Was Working</h2>
+        <SimpleFlowActionButtons client:load character="sakura" characterColor="pink" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">2. Celestia (Red) - Was Working</h2>
+        <SimpleFlowActionButtons client:load character="celestia" characterColor="red" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">3. Chihiro (Green) - Was NOT Working</h2>
+        <SimpleFlowActionButtons client:load character="chihiro" characterColor="green" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">4. Byakuya (Yellow) - Was NOT Working</h2>
+        <SimpleFlowActionButtons client:load character="byakuya" characterColor="yellow" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-purple-400">5. Kyoko (Purple) - Was NOT Working</h2>
+        <SimpleFlowActionButtons client:load character="kyoko" characterColor="purple" />
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-blue-900 border border-blue-700 p-4 rounded">
+      <h3 class="font-bold text-blue-200 mb-2">🧪 Reverse Order Test:</h3>
+      <p class="text-blue-100">If the pattern changes (different characters work/don't work), it's a rendering order issue.</p>
+      <p class="text-blue-100">If the same characters still don't work, it's a character-specific issue.</p>
+    </div>
+  </div>
+</Layout>

@@ -87,7 +87,8 @@ const NodeRedSimulatorDashboard: React.FC = () => {
   const handleOpenDashboard = (character: string) => {
     const dashboardUrl = getDashboardUrl(character);
     if (dashboardUrl) {
-      window.open(dashboardUrl, `${character}-dashboard`, 'width=1200,height=800');
+      console.log(`Opening ${character} dashboard:`, dashboardUrl);
+      window.open(dashboardUrl, `${character}-dashboard`, 'width=1200,height=800,scrollbars=yes,resizable=yes');
     } else {
       alert(`Dashboard not available for ${character}. Please check if the simulator is running.`);
     }
@@ -96,7 +97,8 @@ const NodeRedSimulatorDashboard: React.FC = () => {
   const handleOpenEditor = (character: string) => {
     const editorUrl = getEditorUrl(character);
     if (editorUrl) {
-      window.open(editorUrl, `${character}-editor`, 'width=1400,height=900');
+      console.log(`Opening ${character} editor:`, editorUrl);
+      window.open(editorUrl, `${character}-editor`, 'width=1400,height=900,scrollbars=yes,resizable=yes');
     } else {
       alert(`Editor not available for ${character}. Please check if the simulator is running.`);
     }

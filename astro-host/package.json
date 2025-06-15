@@ -6,14 +6,21 @@
   "types": "dist/index.d.ts", 
   "scripts": {
     "dev": "astro dev",
+    "dev-bg": "nohup astro dev > astro-host.log 2>&1 & echo $! > astro-host.pid && echo 'Astro dev server started in background. PID: '$(cat astro-host.pid)",
     "start": "astro dev",
+    "start-bg": "nohup astro dev > astro-host.log 2>&1 & echo $! > astro-host.pid && echo 'Astro dev server started in background. PID: '$(cat astro-host.pid)",
     "build": "astro build",
     "preview": "astro preview",
+    "preview-bg": "nohup astro preview > astro-preview.log 2>&1 & echo $! > astro-preview.pid && echo 'Astro preview server started in background. PID: '$(cat astro-preview.pid)",
     "astro": "astro",
     "lint": "eslint src/**/*.{ts,tsx,astro}",
     "type-check": "tsc --noEmit",
     "restart": "pkill -f 'astro dev' || true && npm run dev",
-    "stop": "pkill -f 'astro dev' || echo 'No astro dev process found'"
+    "restart-bg": "npm run stop && sleep 2 && npm run dev-bg",
+    "stop": "pkill -f 'astro dev' || echo 'No astro dev process found'",
+    "stop-bg": "if [ -f astro-host.pid ]; then kill $(cat astro-host.pid) && rm astro-host.pid && echo 'Stopped Astro dev server'; else echo 'No PID file found'; fi",
+    "status": "if [ -f astro-host.pid ] && kill -0 $(cat astro-host.pid) 2>/dev/null; then echo 'Astro dev server is running (PID: '$(cat astro-host.pid)')'; else echo 'Astro dev server is not running'; fi",
+    "logs": "tail -f astro-host.log"
   },
   "keywords": [
     "astro-host",

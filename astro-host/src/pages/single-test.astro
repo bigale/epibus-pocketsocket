@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FlowActionButtons } from '../components/FlowActionButtons.tsx';
+
+const character = Astro.url.searchParams.get('character') || 'kyoko';
+const colors = {
+  kyoko: 'purple',
+  byakuya: 'yellow', 
+  chihiro: 'green',
+  celestia: 'red',
+  sakura: 'pink'
+};
+const characterColor = colors[character] || 'blue';
+---
+
+<Layout title={`Test ${character} Buttons`}>
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Test {character} Buttons</h1>
+    
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h2 class="text-xl font-bold mb-4">Character: {character}</h2>
+      <FlowActionButtons client:load character={character} characterColor={characterColor} />
+    </div>
+    
+    <div class="mt-8 space-y-2">
+      <h3 class="text-lg font-bold">Test Other Characters:</h3>
+      <div class="flex gap-2">
+        <a href="/single-test?character=kyoko" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">Kyoko</a>
+        <a href="/single-test?character=byakuya" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded">Byakuya</a>
+        <a href="/single-test?character=chihiro" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Chihiro</a>
+        <a href="/single-test?character=celestia" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Celestia</a>
+        <a href="/single-test?character=sakura" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded">Sakura</a>
+      </div>
+    </div>
+  </div>
+</Layout>

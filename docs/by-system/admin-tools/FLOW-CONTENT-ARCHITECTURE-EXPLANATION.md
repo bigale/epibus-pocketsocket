@@ -1,0 +1,1 @@
+/home/bigale/repos/epibus-pocketsocket/docs/FLOW-CONTENT-ARCHITECTURE-EXPLANATION.md

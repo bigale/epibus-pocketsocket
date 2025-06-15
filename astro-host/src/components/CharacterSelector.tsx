@@ -92,8 +92,9 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
       const port = portMap[characterId];
       if (port) {
         const dashboardUrl = `http://localhost:${port}/api/ui`;
-        console.log('Fallback: Opening dashboard directly:', dashboardUrl);
-        window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800');
+        console.log('Fallback: Opening dashboard:', dashboardUrl);
+        
+        window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800,scrollbars=yes,resizable=yes');
         setIsOpen(false);
       } else {
         alert(`Character selection error: Cannot switch to ${characterId}. Please refresh the page.`);

@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SimpleFlowActionButtons } from '../components/SimpleFlowActionButtons.tsx';
+---
+
+<Layout title="Simple Buttons Test">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Simple Buttons Test (No Service Discovery)</h1>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-purple-400">1. Kyoko (Purple)</h2>
+        <SimpleFlowActionButtons client:load character="kyoko" characterColor="purple" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">2. Byakuya (Yellow)</h2>
+        <SimpleFlowActionButtons client:load character="byakuya" characterColor="yellow" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">3. Chihiro (Green)</h2>
+        <SimpleFlowActionButtons client:load character="chihiro" characterColor="green" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">4. Celestia (Red)</h2>
+        <SimpleFlowActionButtons client:load character="celestia" characterColor="red" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-pink-400">5. Sakura (Pink)</h2>
+        <SimpleFlowActionButtons client:load character="sakura" characterColor="pink" />
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-yellow-900 border border-yellow-700 p-4 rounded">
+      <h3 class="font-bold text-yellow-200 mb-2">🧪 Test Instructions:</h3>
+      <p class="text-yellow-100">This page uses SimpleFlowActionButtons with hardcoded ports (no service discovery).</p>
+      <p class="text-yellow-100">If these work and the regular buttons don't, the issue is with the service discovery logic.</p>
+      <p class="text-yellow-100">Check the browser console for detailed logging.</p>
+    </div>
+  </div>
+</Layout>

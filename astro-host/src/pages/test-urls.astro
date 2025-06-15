@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Test Node-RED Button URLs">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Test Node-RED Button URLs</h1>
+    
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold">Manual URL Tests</h2>
+      
+      <div class="bg-gray-800 p-4 rounded">
+        <h3 class="font-bold mb-2">Kyoko Services</h3>
+        <p><strong>Editor:</strong> <a href="http://localhost:1881/" target="_blank" class="text-blue-400 hover:text-blue-300">http://localhost:1881/</a></p>
+        <p><strong>Dashboard:</strong> <a href="http://localhost:1881/api/ui/" target="_blank" class="text-blue-400 hover:text-blue-300">http://localhost:1881/api/ui/</a></p>
+      </div>
+      
+      <div class="bg-gray-800 p-4 rounded">
+        <h3 class="font-bold mb-2">Byakuya Services</h3>
+        <p><strong>Editor:</strong> <a href="http://localhost:1882/" target="_blank" class="text-blue-400 hover:text-blue-300">http://localhost:1882/</a></p>
+        <p><strong>Dashboard:</strong> <a href="http://localhost:1882/api/ui/" target="_blank" class="text-blue-400 hover:text-blue-300">http://localhost:1882/api/ui/</a></p>
+      </div>
+      
+      <button id="test-all" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg mt-4">
+        Test All URLs (Check Console)
+      </button>
+      
+      <div id="results" class="mt-4 bg-gray-800 p-4 rounded">
+        <h3 class="font-bold mb-2">Test Results:</h3>
+        <div id="results-content">Click "Test All URLs" to run tests</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('test-all').addEventListener('click', async function() {
+      const resultsDiv = document.getElementById('results-content');
+      resultsDiv.innerHTML = 'Testing URLs...';
+      
+      const urls = [
+        'http://localhost:1881/',
+        'http://localhost:1881/api/ui/',
+        'http://localhost:1882/',
+        'http://localhost:1882/api/ui/',
+        'http://localhost:1883/',
+        'http://localhost:1883/api/ui/'
+      ];
+      
+      const results = [];
+      
+      for (const url of urls) {
+        try {
+          const response = await fetch(url, { mode: 'no-cors' });
+          results.push(`✅ ${url} - Accessible`);
+          console.log(`✅ ${url} - Response received`);
+        } catch (error) {
+          results.push(`❌ ${url} - Error: ${error.message}`);
+          console.error(`❌ ${url} - Error:`, error);
+        }
+      }
+      
+      resultsDiv.innerHTML = results.join('<br>');
+    });
+  </script>
+</Layout>

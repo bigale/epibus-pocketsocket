@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SimpleFlowActionButtons } from '../components/SimpleFlowActionButtons.tsx';
+---
+
+<Layout title="Test Flow Action Buttons">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Test Flow Action Buttons</h1>
+    
+    <div class="space-y-8">
+      <div class="border border-gray-700 rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4">Kyoko Buttons</h2>
+        <SimpleFlowActionButtons character="kyoko" characterColor="purple" client:load />
+      </div>
+      
+      <div class="border border-gray-700 rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4">Byakuya Buttons</h2>
+        <SimpleFlowActionButtons character="byakuya" characterColor="yellow" client:load />
+      </div>
+      
+      <div class="border border-gray-700 rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4">Debug Info</h2>
+        <div id="debug-info" class="text-sm text-gray-400">
+          <p>Loading debug info...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Debug script to check API directly
+    async function loadDebugInfo() {
+      try {
+        const response = await fetch('/api/node-red-status');
+        const data = await response.json();
+        
+        const debugDiv = document.getElementById('debug-info');
+        if (debugDiv) {
+          debugDiv.innerHTML = `
+            <p><strong>API Response Status:</strong> ${response.status}</p>
+            <p><strong>Services Found:</strong> ${data.services.length}</p>
+            <p><strong>Online Services:</strong> ${data.summary.online}</p>
+            <p><strong>Last Updated:</strong> ${data.lastUpdated}</p>
+            <pre class="mt-4 bg-gray-800 p-4 rounded text-xs overflow-auto">${JSON.stringify(data, null, 2)}</pre>
+          `;
+        }
+      } catch (error) {
+        const debugDiv = document.getElementById('debug-info');
+        if (debugDiv) {
+          debugDiv.innerHTML = `<p class="text-red-400"><strong>Error:</strong> ${error.message}</p>`;
+        }
+      }
+    }
+    
+    // Load debug info when page loads
+    document.addEventListener('DOMContentLoaded', loadDebugInfo);
+  </script>
+</Layout>

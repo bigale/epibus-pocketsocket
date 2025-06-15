@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SameTabFlowActionButtons } from '../components/SameTabFlowActionButtons.tsx';
+---
+
+<Layout title="Same Tab Navigation Test">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Same Tab Navigation Test</h1>
+    
+    <div class="bg-yellow-900 border border-yellow-700 p-4 rounded mb-8">
+      <h3 class="font-bold text-yellow-200 mb-2">⚠️ Same Tab Navigation</h3>
+      <p class="text-yellow-100">These buttons will navigate in the same tab (no popups). Use browser back button to return.</p>
+      <p class="text-yellow-100">This solves the popup blocking issue we discovered.</p>
+    </div>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-purple-400">1. Kyoko (Purple)</h2>
+        <SameTabFlowActionButtons client:load character="kyoko" characterColor="purple" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">2. Byakuya (Yellow)</h2>
+        <SameTabFlowActionButtons client:load character="byakuya" characterColor="yellow" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">3. Chihiro (Green)</h2>
+        <SameTabFlowActionButtons client:load character="chihiro" characterColor="green" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">4. Celestia (Red)</h2>
+        <SameTabFlowActionButtons client:load character="celestia" characterColor="red" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-pink-400">5. Sakura (Pink)</h2>
+        <SameTabFlowActionButtons client:load character="sakura" characterColor="pink" />
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-green-900 border border-green-700 p-4 rounded">
+      <h3 class="font-bold text-green-200 mb-2">✅ Solution Benefits:</h3>
+      <ul class="text-green-100 list-disc list-inside">
+        <li>No popup blocking issues</li>
+        <li>Works consistently across all browsers</li>
+        <li>Reliable navigation to Node-RED interfaces</li>
+        <li>Same functionality, better compatibility</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

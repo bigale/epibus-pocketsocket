@@ -11717,3 +11717,1014 @@ Status command output: 📊 AI-Kit Node-RED Character Simulators Status
    ./scripts/status.sh      - Show this status
 
 23:07:09 [200] /api/simulators/status 96ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:07:38 [200] /api/node-red-status 20ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:07:38 [200] /api/node-red-status 17ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:07:38 [200] /api/node-red-status 16ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:07:38 [200] /api/node-red-status 22ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:07:38 [200] /api/simulators/status 108ms
+API: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:07:38 [200] /api/simulators/status 91ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:01 [200] /api/node-red-status 18ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:08 [200] /api/node-red-status 18ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:08 [200] /api/node-red-status 13ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:08 [200] /api/node-red-status 15ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:08 [200] /api/node-red-status 14ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:08:08 [200] /api/simulators/status 113ms
+API: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:08:09 [200] /api/simulators/status 103ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:31 [200] /api/node-red-status 16ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:38 [200] /api/node-red-status 19ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:38 [200] /api/node-red-status 14ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:38 [200] /api/node-red-status 14ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:08:38 [200] /api/node-red-status 14ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:08:38 [200] /api/simulators/status 94ms
+API: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:08:38 [200] /api/simulators/status 88ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:01 [200] /api/node-red-status 15ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:08 [200] /api/node-red-status 19ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:08 [200] /api/node-red-status 14ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:08 [200] /api/node-red-status 16ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:08 [200] /api/node-red-status 16ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:09:08 [200] /api/simulators/status 111ms
+API: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:09:08 [200] /api/simulators/status 88ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:31 [200] /api/node-red-status 16ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:38 [200] /api/node-red-status 18ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:38 [200] /api/node-red-status 15ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:38 [200] /api/node-red-status 16ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:38 [200] /api/node-red-status 14ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:09:38 [200] /api/simulators/status 101ms
+API: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:09:38 [200] /api/simulators/status 99ms
+23:09:43 [200] / 4ms
+23:09:43 [404] /.well-known/appspecific/com.chrome.devtools.json 1ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:43 [200] /api/node-red-status 30ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:43 [200] /api/node-red-status 18ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:09:43 [200] /api/simulators/status 133ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:09:45 [200] /api/node-red-status 19ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:08 [200] /api/node-red-status 17ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:08 [200] /api/node-red-status 16ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:10:08 [200] /api/simulators/status 93ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:13 [200] /api/node-red-status 20ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:13 [200] /api/node-red-status 16ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:10:13 [200] /api/simulators/status 107ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:15 [200] /api/node-red-status 13ms
+🔍 Discovering Node-RED services...
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:38 [200] /api/node-red-status 19ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:38 [200] /api/node-red-status 13ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:10:38 [200] /api/simulators/status 90ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+API: Checking Node-RED simulator status...
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:43 [200] /api/node-red-status 19ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:43 [200] /api/node-red-status 15ms
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ✅ Process: Running (PID: 707)
+   ✅ Dashboard: http://localhost:1881 (listening)
+   ⚠️  MODBUS: localhost:5020 (not ready yet)
+   ❌ WebSocket: Port 1981 not listening
+   ⚠️  Status: Check kyoko.log for issues
+
+🎭 byakuya Simulator:
+   ✅ Process: Running (PID: 13563)
+   ✅ Dashboard: http://localhost:1882 (listening)
+   ⚠️  MODBUS: localhost:5021 (not ready yet)
+   ❌ WebSocket: Port 1982 not listening
+   ⚠️  Status: Check byakuya.log for issues
+
+🎭 chihiro Simulator:
+   ✅ Process: Running (PID: 1674)
+   ✅ Dashboard: http://localhost:1883 (listening)
+   ⚠️  MODBUS: localhost:5022 (not ready yet)
+   ❌ WebSocket: Port 1983 not listening
+   ⚠️  Status: Check chihiro.log for issues
+
+🎭 celestia Simulator:
+   ✅ Process: Running (PID: 1655)
+   ✅ Dashboard: http://localhost:1884 (listening)
+   ⚠️  MODBUS: localhost:5023 (not ready yet)
+   ❌ WebSocket: Port 1984 not listening
+   ⚠️  Status: Check celestia.log for issues
+
+🎭 sakura Simulator:
+   ✅ Process: Running (PID: 1684)
+   ✅ Dashboard: http://localhost:1885 (listening)
+   ⚠️  MODBUS: localhost:5024 (not ready yet)
+   ❌ WebSocket: Port 1985 not listening
+   ⚠️  Status: Check sakura.log for issues
+
+==============================================
+📈 Summary: 5/5 simulators running
+🎉 All simulators are running!
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+23:10:43 [200] /api/simulators/status 94ms
+🔍 Discovering Node-RED services...
+✅ Found dashboard for port 1881 at: /api/ui/
+✅ Found dashboard for port 1882 at: /api/ui/
+✅ Found dashboard for port 1883 at: /api/ui/
+✅ Found dashboard for port 1884 at: /api/ui/
+✅ Found dashboard for port 1885 at: /api/ui/
+23:10:45 [200] /api/node-red-status 13ms

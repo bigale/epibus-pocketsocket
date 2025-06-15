@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Manual Button Test">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Manual Button Test</h1>
+    
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold">Test Individual Character URLs</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Kyoko -->
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-bold text-purple-400 mb-2">Kyoko (Port 1881)</h3>
+          <button onclick="window.open('http://localhost:1881/', '_blank')" 
+                  class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mr-2">
+            Editor
+          </button>
+          <button onclick="window.open('http://localhost:1881/api/ui/', '_blank')" 
+                  class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">
+            Dashboard
+          </button>
+        </div>
+        
+        <!-- Byakuya -->
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-bold text-yellow-400 mb-2">Byakuya (Port 1882)</h3>
+          <button onclick="window.open('http://localhost:1882/', '_blank')" 
+                  class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded mr-2">
+            Editor
+          </button>
+          <button onclick="window.open('http://localhost:1882/api/ui/', '_blank')" 
+                  class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">
+            Dashboard
+          </button>
+        </div>
+        
+        <!-- Chihiro -->
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-bold text-green-400 mb-2">Chihiro (Port 1883)</h3>
+          <button onclick="window.open('http://localhost:1883/', '_blank')" 
+                  class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mr-2">
+            Editor
+          </button>
+          <button onclick="window.open('http://localhost:1883/api/ui/', '_blank')" 
+                  class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+            Dashboard
+          </button>
+        </div>
+        
+        <!-- Celestia -->
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-bold text-red-400 mb-2">Celestia (Port 1884)</h3>
+          <button onclick="window.open('http://localhost:1884/', '_blank')" 
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mr-2">
+            Editor
+          </button>
+          <button onclick="window.open('http://localhost:1884/api/ui/', '_blank')" 
+                  class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+            Dashboard
+          </button>
+        </div>
+        
+        <!-- Sakura -->
+        <div class="bg-gray-800 p-4 rounded">
+          <h3 class="font-bold text-pink-400 mb-2">Sakura (Port 1885)</h3>
+          <button onclick="window.open('http://localhost:1885/', '_blank')" 
+                  class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded mr-2">
+            Editor
+          </button>
+          <button onclick="window.open('http://localhost:1885/api/ui/', '_blank')" 
+                  class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded">
+            Dashboard
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-gray-700 p-4 rounded">
+      <h3 class="font-bold mb-2">Instructions:</h3>
+      <p class="text-gray-300">Click each button to test if the URLs open correctly. This bypasses the React component entirely.</p>
+      <p class="text-gray-300 mt-2">If these work but the React buttons don't, then the issue is with the React component logic.</p>
+    </div>
+  </div>
+</Layout>

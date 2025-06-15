@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Button Diagnostic">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Button Diagnostic Test</h1>
+    
+    <div class="space-y-6">
+      <!-- Test 1: Simple Redirect -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-blue-400">Test 1: Page Redirect (Same Tab)</h2>
+        <button 
+          onclick="window.location.href = 'http://localhost:1881/'"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg mr-4"
+        >
+          Navigate to Kyoko Editor (Same Tab)
+        </button>
+        <button 
+          onclick="window.location.href = 'http://localhost:1885/'"
+          class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg"
+        >
+          Navigate to Sakura Editor (Same Tab)
+        </button>
+      </div>
+      
+      <!-- Test 2: window.open with specific options -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Test 2: New Tab with Options</h2>
+        <button 
+          onclick="window.open('http://localhost:1881/', 'kyoko-editor', 'width=1200,height=800,scrollbars=yes,resizable=yes'); console.log('Kyoko window.open called');"
+          class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg mr-4"
+        >
+          Open Kyoko Editor (Named Window)
+        </button>
+        <button 
+          onclick="window.open('http://localhost:1885/', 'sakura-editor', 'width=1200,height=800,scrollbars=yes,resizable=yes'); console.log('Sakura window.open called');"
+          class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg"
+        >
+          Open Sakura Editor (Named Window)
+        </button>
+      </div>
+      
+      <!-- Test 3: Link with target="_blank" -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">Test 3: Links with target="_blank"</h2>
+        <a 
+          href="http://localhost:1881/" 
+          target="_blank"
+          class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg inline-block mr-4"
+        >
+          Link to Kyoko Editor
+        </a>
+        <a 
+          href="http://localhost:1885/" 
+          target="_blank"
+          class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg inline-block"
+        >
+          Link to Sakura Editor
+        </a>
+      </div>
+      
+      <!-- Test 4: Fetch test -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">Test 4: Connectivity Test</h2>
+        <button 
+          id="test-fetch"
+          class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg"
+        >
+          Test Node-RED Connectivity
+        </button>
+        <div id="fetch-results" class="mt-4 bg-gray-900 p-4 rounded text-sm"></div>
+      </div>
+      
+      <!-- Test 5: Popup Permission Test -->
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-orange-400">Test 5: Popup Permission Test</h2>
+        <button 
+          id="test-popup"
+          class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg"
+        >
+          Test Popup Permissions
+        </button>
+        <div id="popup-results" class="mt-4 bg-gray-900 p-4 rounded text-sm"></div>
+      </div>
+    </div>
+    
+    <div class="mt-8 bg-yellow-900 border border-yellow-700 p-4 rounded">
+      <h3 class="font-bold text-yellow-200 mb-2">🧪 Diagnostic Instructions:</h3>
+      <p class="text-yellow-100">Test each method to see which ones work:</p>
+      <ul class="text-yellow-100 mt-2 list-disc list-inside">
+        <li>Test 1: Should always work (same tab navigation)</li>
+        <li>Test 2: Tests popup with specific window options</li>
+        <li>Test 3: Tests browser link handling</li>
+        <li>Test 4: Tests if we can even reach the services</li>
+        <li>Test 5: Tests popup permission status</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Test 4: Fetch connectivity
+    document.getElementById('test-fetch').addEventListener('click', async function() {
+      const resultsDiv = document.getElementById('fetch-results');
+      resultsDiv.innerHTML = 'Testing connectivity...';
+      
+      const services = [
+        { name: 'Kyoko', url: 'http://localhost:1881/' },
+        { name: 'Byakuya', url: 'http://localhost:1882/' },
+        { name: 'Chihiro', url: 'http://localhost:1883/' },
+        { name: 'Celestia', url: 'http://localhost:1884/' },
+        { name: 'Sakura', url: 'http://localhost:1885/' }
+      ];
+      
+      const results = [];
+      
+      for (const service of services) {
+        try {
+          const response = await fetch(service.url, { mode: 'no-cors' });
+          results.push(`✅ ${service.name}: Reachable`);
+        } catch (error) {
+          results.push(`❌ ${service.name}: ${error.message}`);
+        }
+      }
+      
+      resultsDiv.innerHTML = results.join('<br>');
+    });
+    
+    // Test 5: Popup permission test
+    document.getElementById('test-popup').addEventListener('click', function() {
+      const resultsDiv = document.getElementById('popup-results');
+      
+      try {
+        // Test if we can open a popup to a safe URL
+        const popup = window.open('about:blank', 'test-popup', 'width=300,height=200');
+        
+        if (popup) {
+          popup.close();
+          resultsDiv.innerHTML = '✅ Popup permissions appear to be granted';
+        } else {
+          resultsDiv.innerHTML = '❌ Popups are blocked';
+        }
+      } catch (error) {
+        resultsDiv.innerHTML = `❌ Popup test failed: ${error.message}`;
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FlowActionButtons } from '../components/FlowActionButtons.tsx';
+---
+
+<Layout title="Debug Flow Action Buttons">
+  <div class="min-h-screen bg-gray-900 text-white p-8">
+    <h1 class="text-3xl font-bold mb-8">Debug Flow Action Buttons</h1>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-purple-400">1. Kyoko (Purple)</h2>
+        <FlowActionButtons client:load character="kyoko" characterColor="purple" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-yellow-400">2. Byakuya (Yellow)</h2>
+        <FlowActionButtons client:load character="byakuya" characterColor="yellow" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">3. Chihiro (Green)</h2>
+        <FlowActionButtons client:load character="chihiro" characterColor="green" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-400">4. Celestia (Red)</h2>
+        <FlowActionButtons client:load character="celestia" characterColor="red" />
+      </div>
+      
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-pink-400">5. Sakura (Pink)</h2>
+        <FlowActionButtons client:load character="sakura" characterColor="pink" />
+      </div>
+    </div>
+
+    <div class="mt-8 bg-gray-800 p-6 rounded-lg">
+      <h2 class="text-xl font-bold mb-4">Debug Information</h2>
+      <button id="debug-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Load Service Status
+      </button>
+      <div id="debug-output" class="mt-4 bg-gray-900 p-4 rounded text-sm font-mono">
+        Click button to load debug info...
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('debug-btn').addEventListener('click', async function() {
+      const output = document.getElementById('debug-output');
+      output.innerHTML = 'Loading...';
+      
+      try {
+        const response = await fetch('/api/node-red-status');
+        const data = await response.json();
+        
+        let debugText = 'Services discovered:\n';
+        data.services.forEach((service, index) => {
+          debugText += `${index + 1}. ${service.character} (port ${service.port}): ${service.status}\n`;
+          debugText += `   Dashboard: ${service.dashboardPath}\n`;
+          debugText += `   Response time: ${service.responseTime}ms\n\n`;
+        });
+        
+        debugText += `Summary: ${data.summary.online}/${data.summary.total} online\n`;
+        debugText += `Last updated: ${data.lastUpdated}`;
+        
+        output.innerHTML = debugText;
+      } catch (error) {
+        output.innerHTML = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</Layout>
