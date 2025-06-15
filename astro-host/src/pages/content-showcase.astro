@@ -47,16 +47,16 @@ const metricsByCharacter = groupByCharacter(sortedMetrics);
       <!-- Navigation Tabs -->
       <div class="mb-8">
         <nav class="flex space-x-1">
-          <button onclick="showTab('flows')" id="tab-flows" class="tab-button bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">
+          <button data-tab="flows" id="tab-flows" class="tab-button bg-blue-600 text-white px-4 py-2 rounded-lg font-medium">
             📋 Node-RED Flows
           </button>
-          <button onclick="showTab('logs')" id="tab-logs" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+          <button data-tab="logs" id="tab-logs" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
             📊 Live Logs
           </button>
-          <button onclick="showTab('alerts')" id="tab-alerts" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+          <button data-tab="alerts" id="tab-alerts" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
             🚨 Alerts
           </button>
-          <button onclick="showTab('metrics')" id="tab-metrics" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
+          <button data-tab="metrics" id="tab-metrics" class="tab-button bg-gray-700 text-gray-300 px-4 py-2 rounded-lg font-medium">
             ⚡ Performance
           </button>
         </nav>
@@ -300,30 +300,41 @@ const metricsByCharacter = groupByCharacter(sortedMetrics);
   </div>
 
   <script>
-    function showTab(tabName) {
-      // Hide all tab contents
-      document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.add('hidden');
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      function showTab(tabName) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.add('hidden');
+        });
+        
+        // Reset all tab buttons
+        document.querySelectorAll('.tab-button').forEach(button => {
+          button.classList.remove('bg-blue-600', 'text-white');
+          button.classList.add('bg-gray-700', 'text-gray-300');
+        });
+        
+        // Show selected tab content
+        document.getElementById(`content-${tabName}`).classList.remove('hidden');
+        
+        // Highlight selected tab button
+        const selectedButton = document.getElementById(`tab-${tabName}`);
+        selectedButton.classList.remove('bg-gray-700', 'text-gray-300');
+        selectedButton.classList.add('bg-blue-600', 'text-white');
+      }
+      
+      // Add event listeners to all tab buttons
+      document.querySelectorAll('[data-tab]').forEach(button => {
+        button.addEventListener('click', function() {
+          const tabName = this.getAttribute('data-tab');
+          showTab(tabName);
+        });
       });
       
-      // Reset all tab buttons
-      document.querySelectorAll('.tab-button').forEach(button => {
-        button.classList.remove('bg-blue-600', 'text-white');
-        button.classList.add('bg-gray-700', 'text-gray-300');
-      });
-      
-      // Show selected tab content
-      document.getElementById(`content-${tabName}`).classList.remove('hidden');
-      
-      // Highlight selected tab button
-      const selectedButton = document.getElementById(`tab-${tabName}`);
-      selectedButton.classList.remove('bg-gray-700', 'text-gray-300');
-      selectedButton.classList.add('bg-blue-600', 'text-white');
-    }
-    
-    // Auto-refresh every 30 seconds
-    setInterval(() => {
-      window.location.reload();
-    }, 30000);
+      // Auto-refresh every 30 seconds
+      setInterval(() => {
+        window.location.reload();
+      }, 30000);
+    });
   </script>
 </Layout>

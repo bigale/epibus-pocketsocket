@@ -1,0 +1,346 @@
+[0;35m=================================================================[0m
+[0;35m🎭 AI-Kit Industrial IoT - Complete System Launcher[0m
+[0;35m   Character-Driven Industrial Automation Revolution[0m
+[0;35m=================================================================[0m
+
+[0;36m🎭 Available Characters:[0m
+  🕵️ Kyoko Kirigiri    - Detective & Anomaly Investigation (Port: 1881, MODBUS: 5020)
+  💼 Byakuya Togami    - Efficiency & Performance Optimization (Port: 1882, MODBUS: 5021)
+  💻 Chihiro Fujisaki  - Technical Integration & Innovation (Port: 1883, MODBUS: 5022)
+  🎨 Celestia Ludenberg - UI/UX & Aesthetic Design (Port: 1884, MODBUS: 5023)
+  💪 Sakura Ogami      - Stress Testing & Reliability (Port: 1885, MODBUS: 5024)
+
+[0;34m🔍 Checking prerequisites...[0m
+[0;32m✅ Prerequisites satisfied[0m
+
+[0;34m📦 Installing dependencies...[0m
+[1;33mInstalling root dependencies...[0m
+
+added 57 packages, and audited 870 packages in 2s
+
+244 packages are looking for funding
+  run `npm fund` for details
+
+4 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[1;33mInstalling Astro-Host dependencies...[0m
+
+up to date, audited 870 packages in 1s
+
+244 packages are looking for funding
+  run `npm fund` for details
+
+4 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[1;33mInstalling Node-RED simulator dependencies...[0m
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated multer@1.4.5-lts.1: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 814 packages, and audited 818 packages in 8s
+
+142 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[0;32m✅ Dependencies installed[0m
+
+[0;34m🔨 Building projects...[0m
+[1;33mBuilding root project...[0m
+
+> @ai-kit/industrial-iot@1.0.0 build
+> npm run build:astro && npm run build:backend
+
+
+> @ai-kit/industrial-iot@1.0.0 build:astro
+> cd astro-host && npm run build
+
+
+> @ai-kit/astro-host-industrial@1.0.0 build
+> astro build
+
+21:46:57 [vite] Re-optimizing dependencies because vite config has changed
+21:46:57 [types] Generated 273ms
+21:46:57 [build] output: "static"
+21:46:57 [build] directory: /home/bigale/repos/epibus-pocketsocket/astro-host/dist/
+21:46:57 [build] Collecting build info...
+21:46:57 [build] ✓ Completed in 312ms.
+21:46:57 [build] Building static entrypoints...
+21:46:59 [vite] ✓ built in 1.38s
+21:46:59 [build] ✓ Completed in 1.41s.
+
+ building client (vite) 
+21:46:59 [vite] transforming...
+21:47:00 [vite] ✓ 1671 modules transformed.
+21:47:00 [vite] rendering chunks...
+21:47:00 [vite] computing gzip size...
+21:47:00 [vite] dist/assets/index.Ba-IbuDT.js                  6.84 kB │ gzip:  2.74 kB
+21:47:00 [vite] dist/assets/client.BVFwylym.js               135.60 kB │ gzip: 43.80 kB
+21:47:00 [vite] dist/assets/IndustrialDashboard.D_MPhZVz.js  150.93 kB │ gzip: 46.78 kB
+21:47:00 [vite] ✓ built in 1.65s
+
+ generating static routes 
+21:47:00 λ src/pages/api/simulators/start.ts
+21:47:00   └─ /api/simulators/start21:47:00 [WARN] [router] No API Route handler exists for the method "GET" for the route "/api/simulators/start".
+Found handlers: "POST"
+
+ (+3ms)
+21:47:00 λ src/pages/api/simulators/status.ts
+21:47:00   └─ /api/simulators/statusAPI: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1881 (offline)
+   ❌ MODBUS: localhost:5020 (offline)
+   ❌ WebSocket: Port 1981 (offline)
+
+🎭 byakuya Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1882 (offline)
+   ❌ MODBUS: localhost:5021 (offline)
+   ❌ WebSocket: Port 1982 (offline)
+
+🎭 chihiro Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1883 (offline)
+   ❌ MODBUS: localhost:5022 (offline)
+   ❌ WebSocket: Port 1983 (offline)
+
+🎭 celestia Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1884 (offline)
+   ❌ MODBUS: localhost:5023 (offline)
+   ❌ WebSocket: Port 1984 (offline)
+
+🎭 sakura Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1885 (offline)
+   ❌ MODBUS: localhost:5024 (offline)
+   ❌ WebSocket: Port 1985 (offline)
+
+==============================================
+📈 Summary: 0/5 simulators running
+🛑 No simulators are running. Use './scripts/start-all.sh' to start them.
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+ (+57ms)
+21:47:00 λ src/pages/api/simulators/stop.ts
+21:47:00   └─ /api/simulators/stop21:47:00 [WARN] [router] No API Route handler exists for the method "GET" for the route "/api/simulators/stop".
+Found handlers: "POST"
+
+ (+1ms)
+21:47:00 ▶ src/pages/content/flows/[slug].astro
+21:47:00   ├─ /content/flows/byakuya-quality-control/index.html (+11ms)
+21:47:00   ├─ /content/flows/kyoko-reactor-control/index.html (+5ms)
+21:47:00   ├─ /content/flows/kyoko-temperature-monitoring/index.html (+4ms)
+21:47:00   ├─ /content/flows/sample-flow-2025-06-14-195408/index.html (+9ms)
+21:47:00   └─ /content/flows/sample-flow-2025-06-14-201016/index.html (+8ms)
+21:47:00 ▶ src/pages/content.astro
+21:47:00   └─ /content/index.html (+12ms)
+21:47:00 ▶ src/pages/content-showcase.astro
+21:47:00   └─ /content-showcase/index.html (+6ms)
+21:47:00 ▶ src/pages/flows/[slug].astro
+21:47:00   ├─ /flows/byakuya-quality-control/index.html (+3ms)
+21:47:00   ├─ /flows/kyoko-reactor-control/index.html (+2ms)
+21:47:00   ├─ /flows/kyoko-temperature-monitoring/index.html (+2ms)
+21:47:00   ├─ /flows/sample-flow-2025-06-14-195408/index.html (+2ms)
+21:47:00   └─ /flows/sample-flow-2025-06-14-201016/index.html (+1ms)
+21:47:01 ▶ src/pages/index.astro
+21:47:01   └─ /index.html (+11ms)
+21:47:01 ✓ Completed in 390ms.
+
+21:47:01 [build] 13 page(s) built in 3.78s
+21:47:01 [build] Complete!
+
+> @ai-kit/industrial-iot@1.0.0 build:backend
+> cd universal-plc-adapter && npm run build
+
+
+> @ai-kit/universal-plc-adapter@1.0.0 build
+> tsc
+
+[1;33mBuilding Astro-Host...[0m
+
+> @ai-kit/astro-host-industrial@1.0.0 build
+> astro build
+
+21:47:03 [types] Generated 220ms
+21:47:03 [build] output: "static"
+21:47:03 [build] directory: /home/bigale/repos/epibus-pocketsocket/astro-host/dist/
+21:47:03 [build] Collecting build info...
+21:47:03 [build] ✓ Completed in 258ms.
+21:47:03 [build] Building static entrypoints...
+21:47:05 [vite] ✓ built in 1.47s
+21:47:05 [build] ✓ Completed in 1.51s.
+
+ building client (vite) 
+21:47:05 [vite] transforming...
+21:47:06 [vite] ✓ 1671 modules transformed.
+21:47:06 [vite] rendering chunks...
+21:47:06 [vite] computing gzip size...
+21:47:06 [vite] dist/assets/index.Ba-IbuDT.js                  6.84 kB │ gzip:  2.74 kB
+21:47:06 [vite] dist/assets/client.BVFwylym.js               135.60 kB │ gzip: 43.80 kB
+21:47:06 [vite] dist/assets/IndustrialDashboard.D_MPhZVz.js  150.93 kB │ gzip: 46.78 kB
+21:47:06 [vite] ✓ built in 1.66s
+
+ generating static routes 
+21:47:06 λ src/pages/api/simulators/start.ts
+21:47:06   └─ /api/simulators/start21:47:06 [WARN] [router] No API Route handler exists for the method "GET" for the route "/api/simulators/start".
+Found handlers: "POST"
+
+ (+3ms)
+21:47:06 λ src/pages/api/simulators/status.ts
+21:47:06   └─ /api/simulators/statusAPI: Checking Node-RED simulator status...
+Status command output: 📊 AI-Kit Node-RED Character Simulators Status
+==============================================
+
+🎭 kyoko Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1881 (offline)
+   ❌ MODBUS: localhost:5020 (offline)
+   ❌ WebSocket: Port 1981 (offline)
+
+🎭 byakuya Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1882 (offline)
+   ❌ MODBUS: localhost:5021 (offline)
+   ❌ WebSocket: Port 1982 (offline)
+
+🎭 chihiro Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1883 (offline)
+   ❌ MODBUS: localhost:5022 (offline)
+   ❌ WebSocket: Port 1983 (offline)
+
+🎭 celestia Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1884 (offline)
+   ❌ MODBUS: localhost:5023 (offline)
+   ❌ WebSocket: Port 1984 (offline)
+
+🎭 sakura Simulator:
+   ❌ Process: Not running
+   ❌ Dashboard: http://localhost:1885 (offline)
+   ❌ MODBUS: localhost:5024 (offline)
+   ❌ WebSocket: Port 1985 (offline)
+
+==============================================
+📈 Summary: 0/5 simulators running
+🛑 No simulators are running. Use './scripts/start-all.sh' to start them.
+
+💡 Available commands:
+   ./scripts/start-all.sh   - Start all simulators
+   ./scripts/stop-all.sh    - Stop all simulators
+   ./scripts/restart-all.sh - Restart all simulators
+   ./scripts/status.sh      - Show this status
+
+ (+46ms)
+21:47:06 λ src/pages/api/simulators/stop.ts
+21:47:06   └─ /api/simulators/stop21:47:06 [WARN] [router] No API Route handler exists for the method "GET" for the route "/api/simulators/stop".
+Found handlers: "POST"
+
+ (+1ms)
+21:47:06 ▶ src/pages/content/flows/[slug].astro
+21:47:06   ├─ /content/flows/byakuya-quality-control/index.html (+11ms)
+21:47:06   ├─ /content/flows/kyoko-reactor-control/index.html (+5ms)
+21:47:06   ├─ /content/flows/kyoko-temperature-monitoring/index.html (+6ms)
+21:47:06   ├─ /content/flows/sample-flow-2025-06-14-195408/index.html (+5ms)
+21:47:06   └─ /content/flows/sample-flow-2025-06-14-201016/index.html (+5ms)
+21:47:06 ▶ src/pages/content.astro
+21:47:06   └─ /content/index.html (+12ms)
+21:47:06 ▶ src/pages/content-showcase.astro
+21:47:06   └─ /content-showcase/index.html (+4ms)
+21:47:06 ▶ src/pages/flows/[slug].astro
+21:47:06   ├─ /flows/byakuya-quality-control/index.html (+3ms)
+21:47:06   ├─ /flows/kyoko-reactor-control/index.html (+4ms)
+21:47:06   ├─ /flows/kyoko-temperature-monitoring/index.html (+4ms)
+21:47:06   ├─ /flows/sample-flow-2025-06-14-195408/index.html (+3ms)
+21:47:06   └─ /flows/sample-flow-2025-06-14-201016/index.html (+3ms)
+21:47:07 ▶ src/pages/index.astro
+21:47:07   └─ /index.html (+14ms)
+21:47:07 ✓ Completed in 424ms.
+
+21:47:07 [build] 13 page(s) built in 3.88s
+21:47:07 [build] Complete!
+[0;32m✅ Projects built[0m
+
+[0;34m🚀 Starting Astro-Host dashboard...[0m
+[0;32m🎯 Astro-Host will be available at: http://localhost:4321[0m
+[1;33mStarting Astro-Host development server...[0m
+[1;33mWaiting for Astro-Host to initialize...[0m
+[0;32m✅ Astro-Host dashboard started successfully[0m
+[0;34m🎭 Starting Node-RED character simulators...[0m
+🕵️ Starting Kyoko Kirigiri (Detective Lab)...
+💼 Starting Byakuya Togami (Efficiency Center)...
+💻 Starting Chihiro Fujisaki (Integration Lab)...
+🎨 Starting Celestia Ludenberg (Design Studio)...
+💪 Starting Sakura Ogami (Testing Lab)...
+[1;33mWaiting for Node-RED instances to initialize...[0m
+[0;34m🔍 Checking simulator status...[0m
+[0;31m❌ 🕵️ Kyoko Kirigiri - Failed to start[0m
+[0;31m❌ 💼 Byakuya Togami - Failed to start[0m
+[0;31m❌ 💻 Chihiro Fujisaki - Failed to start[0m
+[0;31m❌ 🎨 Celestia Ludenberg - Failed to start[0m
+[0;31m❌ 💪 Sakura Ogami - Failed to start[0m
+
+[0;35m=================================================================[0m
+[0;32m🎉 AI-Kit Industrial IoT System is now running![0m
+[0;35m=================================================================[0m
+
+[0;36m📊 Main Dashboard:[0m
+   🌟 Astro-Host Industrial Dashboard: [0;34mhttp://localhost:4321[0m
+
+[0;36m🎭 Character Node-RED Simulators:[0m
+   🕵️ Kyoko (Detective Lab):       [0;34mhttp://localhost:1881[0m | UI: [0;34mhttp://localhost:1881/ui[0m
+   💼 Byakuya (Efficiency Center): [0;34mhttp://localhost:1882[0m | UI: [0;34mhttp://localhost:1882/ui[0m
+   💻 Chihiro (Integration Lab):   [0;34mhttp://localhost:1883[0m | UI: [0;34mhttp://localhost:1883/ui[0m
+   🎨 Celestia (Design Studio):    [0;34mhttp://localhost:1884[0m | UI: [0;34mhttp://localhost:1884/ui[0m
+   💪 Sakura (Testing Lab):        [0;34mhttp://localhost:1885[0m | UI: [0;34mhttp://localhost:1885/ui[0m
+
+[0;36m🔗 MODBUS/TCP Endpoints:[0m
+   🕵️ Kyoko:    [0;34mmodbus://localhost:5020[0m
+   💼 Byakuya:  [0;34mmodbus://localhost:5021[0m
+   💻 Chihiro:  [0;34mmodbus://localhost:5022[0m
+   🎨 Celestia: [0;34mmodbus://localhost:5023[0m
+   💪 Sakura:   [0;34mmodbus://localhost:5024[0m
+
+[0;36m📁 Log Files:[0m
+   📊 Astro-Host: [1;33mlogs/astro-host.log[0m
+   🕵️ Kyoko:     [1;33mlogs/kyoko.log[0m
+   💼 Byakuya:   [1;33mlogs/byakuya.log[0m
+   💻 Chihiro:   [1;33mlogs/chihiro.log[0m
+   🎨 Celestia:  [1;33mlogs/celestia.log[0m
+   💪 Sakura:    [1;33mlogs/sakura.log[0m
+
+[1;33m💡 Tips:[0m
+   • Use the Astro-Host dashboard to monitor all simulators
+   • Each character has unique specializations and personality traits
+   • Try collaborative scenarios in the dashboard
+   • Use Ctrl+C to stop all services
+
+[0;32m🎯 System is running. Press Ctrl+C to stop all services.[0m

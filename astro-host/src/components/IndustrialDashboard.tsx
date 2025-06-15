@@ -22,6 +22,7 @@ import AnalysisPanel from './AnalysisPanel';
 import AlarmPanel from './AlarmPanel';
 import NodeRedSimulatorDashboard from './NodeRedSimulatorDashboard';
 import { useIndustrialStore } from '../store/industrialStore';
+import { useNodeRedServices, NodeRedServiceStatus } from '../hooks/useNodeRedServices';
 
 interface Props {}
 
@@ -30,29 +31,25 @@ const IndustrialDashboard: React.FC<Props> = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState('kyoko');
   
-  // Character switching functionality
+  // Use dynamic service discovery
+  const { services, getDashboardUrl, getEditorUrl } = useNodeRedServices();
+  
+  // Character switching functionality with dynamic URLs
   const handleCharacterChange = (characterId: string) => {
     console.log('IndustrialDashboard: handleCharacterChange called with:', characterId);
     setSelectedCharacter(characterId);
     
-    // Open the character's Node-RED dashboard
-    const portMap: Record<string, number> = {
-      'kyoko': 1881,
-      'byakuya': 1882,
-      'chihiro': 1883,
-      'celestia': 1884,
-      'sakura': 1885
-    };
+    // Get dynamic URLs from service discovery
+    const dashboardUrl = getDashboardUrl(characterId);
+    const editorUrl = getEditorUrl(characterId);
     
-    const port = portMap[characterId];
-    if (port) {
-      // Open the character's live dashboard
-      const dashboardUrl = `http://localhost:${port}/api/ui`;
+    if (dashboardUrl) {
+      // Open the character's live dashboard with dynamically discovered path
       window.open(dashboardUrl, `${characterId}-dashboard`, 'width=1200,height=800');
-      
-      // Also open the editor if needed
-      const editorUrl = `http://localhost:${port}`;
       console.log(`Character ${characterId} switched. Dashboard: ${dashboardUrl}, Editor: ${editorUrl}`);
+    } else {
+      console.warn(`No dashboard URL available for character: ${characterId}`);
+      alert(`${characterId} character service is not available. Please check if the simulator is running.`);
     }
   };
   
@@ -399,12 +396,9 @@ const IndustrialDashboard: React.FC<Props> = () => {
                 </h1>
               </div>
               
-              {/* System Status */}
-              <div className="flex items-center space-x-2 ml-8">
-                <div className={`w-3 h-3 rounded-full ${getStatusColor()}`} />
-                <span className="text-sm text-gray-300">
-                  {isConnected ? 'Connected' : 'Disconnected'}
-                </span>
+              {/* System Status - Now using dynamic service discovery */}
+              <div className="flex items-center space-x-4 ml-8">
+                <NodeRedServiceStatus />
               </div>
             </div>
 

@@ -197,6 +197,46 @@ export class CharacterSimulator extends EventEmitter {
         .then(result => res.json(result))
         .catch(err => res.status(500).json({ error: err.message }));
     });
+
+    // Debug logging endpoint for Node-RED flows
+    this.expressApp.post('/api/debug-log', (req, res) => {
+      const { nodeId, message, data, level = 'info' } = req.body;
+      
+      // Log with character context
+      const logData = {
+        character: this.character.id,
+        nodeId,
+        data,
+        timestamp: new Date().toISOString()
+      };
+
+      // Use proper logger methods
+      switch (level) {
+        case 'error':
+          this.logger.error(`[${nodeId}] ${message}`, logData);
+          break;
+        case 'warn':
+          this.logger.warn(`[${nodeId}] ${message}`, logData);
+          break;
+        case 'debug':
+          this.logger.debug(`[${nodeId}] ${message}`, logData);
+          break;
+        default:
+          this.logger.info(`[${nodeId}] ${message}`, logData);
+      }
+
+      // Also emit via WebSocket for real-time monitoring
+      this.emit('debug-log', {
+        character: this.character.id,
+        nodeId,
+        message,
+        data,
+        level,
+        timestamp: new Date().toISOString()
+      });
+
+      res.json({ success: true });
+    });
   }
 
   /**
